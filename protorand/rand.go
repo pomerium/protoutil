@@ -15,11 +15,17 @@ import (
 	"google.golang.org/protobuf/reflect/protopath"
 	"google.golang.org/protobuf/reflect/protorange"
 	"google.golang.org/protobuf/reflect/protoreflect"
+	"google.golang.org/protobuf/types/known/durationpb"
 	"google.golang.org/protobuf/types/known/fieldmaskpb"
+	"google.golang.org/protobuf/types/known/structpb"
 )
 
 type ProtoRand[T proto.Message] struct {
 	*protorand.ProtoRand
+	// If true, durations will be limited to the range of values representable
+	// by time.Duration (+/- ~292y) instead of the much larger range supported by
+	// durationpb.Duration (+/- 10000y)
+	UseGoDurationLimits bool
 
 	mask *fieldmaskpb.FieldMask
 	seed int64
@@ -55,7 +61,7 @@ func (p *ProtoRand[T]) Gen() (T, error) {
 	if p.mask != nil {
 		fieldmask.ExclusiveDiscard(out, p.mask)
 	}
-	sanitizeLargeNumbers(out)
+	sanitize(out, p.UseGoDurationLimits)
 	return out.(T), nil
 }
 
@@ -152,7 +158,12 @@ func newPartition(size int, ratio float64) []int {
 	return s
 }
 
-func sanitizeLargeNumbers(msg proto.Message) {
+var (
+	durationDesc = (*durationpb.Duration)(nil).ProtoReflect().Descriptor()
+	structDesc   = (*structpb.Struct)(nil).ProtoReflect().Descriptor()
+)
+
+func sanitize(msg proto.Message, useGoDurationLimits bool) {
 	protorange.Range(msg.ProtoReflect(), func(vs protopath.Values) error {
 		// mask randomly generated uint64s to 53 bits, as larger values are not
 		// representable in json.
@@ -161,11 +172,35 @@ func sanitizeLargeNumbers(msg proto.Message) {
 			return nil
 		}
 		fd := v.Step.FieldDescriptor()
-		if fd.Kind() == protoreflect.Uint64Kind {
+		switch fd.Kind() {
+		case protoreflect.Uint64Kind:
 			u := v.Value.Uint()
 			if masked := u & 0x1FFFFFFFFFFFFF; masked != u {
 				containingMsg := vs.Index(-2).Value.Message()
 				containingMsg.Set(fd, protoreflect.ValueOfUint64(masked))
+			}
+		case protoreflect.MessageKind:
+			switch fd.Message() {
+			case durationDesc:
+				if useGoDurationLimits {
+					// restrict durations to the range allowed by time.Duration.
+					dpb := v.Value.Message().Interface().(*durationpb.Duration)
+					duration := dpb.AsDuration()
+					if duration == math.MinInt64 || duration == math.MaxInt64 {
+						nanos := duration.Nanoseconds()
+						dpb.Seconds = nanos / 1e9
+						dpb.Nanos = int32(nanos - dpb.Seconds*1e9)
+					}
+				}
+			case structDesc:
+				// ensure we don't end up with invalid structs, which can happen if
+				// the recursion limit is hit before the field oneof can be set
+				spb := v.Value.Message().Interface().(*structpb.Struct)
+				for field, value := range spb.Fields {
+					if value.Kind == nil {
+						spb.Fields[field] = structpb.NewNullValue()
+					}
+				}
 			}
 		}
 		return nil
