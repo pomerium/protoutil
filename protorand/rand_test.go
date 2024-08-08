@@ -18,11 +18,11 @@ import (
 	"fmt"
 	"math"
 
-	"github.com/kralicky/protoutil/protorand"
-	"github.com/kralicky/protoutil/test/testdata"
-	. "github.com/kralicky/protoutil/testutil"
 	. "github.com/onsi/ginkgo/v2"
 	. "github.com/onsi/gomega"
+	"github.com/pomerium/protoutil/protorand"
+	"github.com/pomerium/protoutil/test/testdata"
+	. "github.com/pomerium/protoutil/testutil"
 	"google.golang.org/protobuf/types/known/fieldmaskpb"
 	"google.golang.org/protobuf/types/known/wrapperspb"
 )

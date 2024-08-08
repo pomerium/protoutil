@@ -19,9 +19,9 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/kralicky/protoutil/paths"
-	"github.com/kralicky/protoutil/protorand"
-	"github.com/kralicky/protoutil/test/testdata"
+	"github.com/pomerium/protoutil/paths"
+	"github.com/pomerium/protoutil/protorand"
+	"github.com/pomerium/protoutil/test/testdata"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"google.golang.org/protobuf/proto"

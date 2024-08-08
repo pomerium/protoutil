@@ -2,7 +2,7 @@
 // versions:
 // 	protoc-gen-go v1.34.2
 // 	protoc        (unknown)
-// source: github.com/kralicky/protoutil/test/testdata/testdata.proto
+// source: github.com/pomerium/protoutil/test/testdata/testdata.proto
 
 package testdata
 

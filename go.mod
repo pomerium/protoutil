@@ -1,4 +1,4 @@
-module github.com/kralicky/protoutil
+module github.com/pomerium/protoutil
 
 go 1.22.5
 

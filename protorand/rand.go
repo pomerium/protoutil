@@ -22,8 +22,8 @@ import (
 	"unsafe"
 
 	art "github.com/kralicky/go-adaptive-radix-tree"
-	"github.com/kralicky/protoutil/fieldmasks"
-	"github.com/kralicky/protoutil/messages"
+	"github.com/pomerium/protoutil/fieldmasks"
+	"github.com/pomerium/protoutil/messages"
 	"github.com/sryoya/protorand"
 	"github.com/zeebo/xxh3"
 	"google.golang.org/protobuf/proto"

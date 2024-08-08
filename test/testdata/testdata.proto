@@ -8,7 +8,7 @@ import "google/protobuf/struct.proto";
 import "google/protobuf/timestamp.proto";
 import "google/protobuf/wrappers.proto";
 
-option go_package = "github.com/kralicky/protoutil/test/testdata";
+option go_package = "github.com/pomerium/protoutil/test/testdata";
 
 message Message {
   int32  int32_field  = 1;
