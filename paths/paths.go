@@ -10,7 +10,17 @@ import (
 	"google.golang.org/protobuf/types/known/anypb"
 )
 
-func Dereference(root proto.Message, path protopath.Path) (protoreflect.Value, error) {
+// Evaluate returns the value within a message referenced by the given path,
+// or an invalid value if the path could not be resolved for any reason.
+//
+// The path may, but is not required to, contain a root step. If the path does
+// contain a root step, and the root step does not match the provided message,
+// this function will panic.
+//
+// A non-nil error can be returned if the wrong message type is given in an
+// any-expand expression. Otherwise, the message not containing a value at the
+// path is not treated as an error.
+func Evaluate(root proto.Message, path protopath.Path) (protoreflect.Value, error) {
 	v := protoreflect.ValueOfMessage(root.ProtoReflect())
 	for _, step := range path {
 		if !v.IsValid() {

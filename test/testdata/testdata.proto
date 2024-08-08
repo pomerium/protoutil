@@ -295,3 +295,19 @@ enum SampleEnum {
   Foo     = 1;
   Bar     = 2;
 }
+
+message Int64Map {
+  map<int64, int64> value = 1;
+}
+
+message Uint64Map {
+  map<uint64, uint64> value = 1;
+}
+
+message Int64List {
+  repeated int64 value = 1;
+}
+
+message Uint64List {
+  repeated uint64 value = 1;
+}

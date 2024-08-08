@@ -1,4 +1,4 @@
-package fieldmask
+package fieldmasks
 
 import (
 	"google.golang.org/protobuf/reflect/protoreflect"

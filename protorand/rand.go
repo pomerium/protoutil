@@ -5,9 +5,10 @@ package protorand
 import (
 	"math"
 	"math/rand"
+	"unsafe"
 
 	art "github.com/kralicky/go-adaptive-radix-tree"
-	"github.com/kralicky/protoutil/fieldmask"
+	"github.com/kralicky/protoutil/fieldmasks"
 	"github.com/kralicky/protoutil/messages"
 	"github.com/sryoya/protorand"
 	"github.com/zeebo/xxh3"
@@ -24,8 +25,12 @@ type ProtoRand[T proto.Message] struct {
 	*protorand.ProtoRand
 	// If true, durations will be limited to the range of values representable
 	// by time.Duration (+/- ~292y) instead of the much larger range supported by
-	// durationpb.Duration (+/- 10000y)
+	// durationpb.Duration (+/- 10000y). Defaults to false.
 	UseGoDurationLimits bool
+
+	// If true, clamps the values of (u)int64 fields to 53 bits to ensure they are
+	// representable in JSON. Defaults to false.
+	UseJsonCompatibleIntegers bool
 
 	mask *fieldmaskpb.FieldMask
 	seed int64
@@ -59,9 +64,9 @@ func (p *ProtoRand[T]) Gen() (T, error) {
 		return zero, err
 	}
 	if p.mask != nil {
-		fieldmask.ExclusiveDiscard(out, p.mask)
+		fieldmasks.ExclusiveDiscard(out, p.mask)
 	}
-	sanitize(out, p.UseGoDurationLimits)
+	p.sanitize(out)
 	return out.(T), nil
 }
 
@@ -92,13 +97,13 @@ func (p *ProtoRand[T]) GenPartial(ratio float64) (T, error) {
 
 	newGeneratedMsg := p.MustGen()
 
-	var nestedMask fieldmask.Tree
+	var nestedMask fieldmasks.Tree
 	if p.mask != nil {
-		nestedMask = fieldmask.AsTree(p.mask)
+		nestedMask = fieldmasks.AsTree(p.mask)
 	}
 
-	var walk func(msg protoreflect.Message, prefix string, mask fieldmask.Tree)
-	walk = func(msg protoreflect.Message, prefix string, mask fieldmask.Tree) {
+	var walk func(msg protoreflect.Message, prefix string, mask fieldmasks.Tree)
+	walk = func(msg protoreflect.Message, prefix string, mask fieldmasks.Tree) {
 		md := msg.Descriptor()
 		wire, _ := proto.MarshalOptions{Deterministic: true}.Marshal(msg.Interface())
 		msgFields := md.Fields()
@@ -163,46 +168,126 @@ var (
 	structDesc   = (*structpb.Struct)(nil).ProtoReflect().Descriptor()
 )
 
-func sanitize(msg proto.Message, useGoDurationLimits bool) {
-	protorange.Range(msg.ProtoReflect(), func(vs protopath.Values) error {
-		// mask randomly generated uint64s to 53 bits, as larger values are not
+func (p *ProtoRand[T]) sanitize(msg proto.Message) {
+	protorange.Options{Stable: true}.Range(msg.ProtoReflect(), func(vs protopath.Values) error {
+		// mask randomly generated (u)int64s to 53 bits, as larger values are not
 		// representable in json.
+		const mask = 1<<53 - 1
 		v := vs.Index(-1)
-		if v.Step.Kind() != protopath.FieldAccessStep {
-			return nil
-		}
-		fd := v.Step.FieldDescriptor()
-		switch fd.Kind() {
-		case protoreflect.Uint64Kind:
-			u := v.Value.Uint()
-			if masked := u & 0x1FFFFFFFFFFFFF; masked != u {
-				containingMsg := vs.Index(-2).Value.Message()
-				containingMsg.Set(fd, protoreflect.ValueOfUint64(masked))
-			}
-		case protoreflect.MessageKind:
-			switch fd.Message() {
-			case durationDesc:
-				if useGoDurationLimits {
-					// restrict durations to the range allowed by time.Duration.
-					dpb := v.Value.Message().Interface().(*durationpb.Duration)
-					duration := dpb.AsDuration()
-					if duration == math.MinInt64 || duration == math.MaxInt64 {
-						nanos := duration.Nanoseconds()
-						dpb.Seconds = nanos / 1e9
-						dpb.Nanos = int32(nanos - dpb.Seconds*1e9)
+		switch v.Step.Kind() {
+		case protopath.ListIndexStep:
+			if p.UseJsonCompatibleIntegers {
+				// handle list values
+				prevList := vs.Index(-2).Value.List()
+				switch lv := v.Value.Interface().(type) {
+				case uint64:
+					if masked := lv & mask; masked != lv {
+						prevList.Set(v.Step.ListIndex(), protoreflect.ValueOfUint64(masked))
+					}
+				case int64:
+					if masked := lv & mask; masked != lv {
+						prevList.Set(v.Step.ListIndex(), protoreflect.ValueOfInt64(masked))
 					}
 				}
-			case structDesc:
-				// ensure we don't end up with invalid structs, which can happen if
-				// the recursion limit is hit before the field oneof can be set
-				spb := v.Value.Message().Interface().(*structpb.Struct)
-				for field, value := range spb.Fields {
-					if value.Kind == nil {
-						spb.Fields[field] = structpb.NewNullValue()
+			}
+		case protopath.MapIndexStep:
+			if p.UseJsonCompatibleIntegers {
+				// handle map keys/values
+				prevMap := vs.Index(-2).Value.Map()
+				mapValue := prevMap.Get(v.Step.MapIndex())
+				switch mv := mapValue.Interface().(type) {
+				case uint64:
+					if masked := mv & mask; masked != mv {
+						mapValue = protoreflect.ValueOfUint64(masked)
+						prevMap.Set(v.Step.MapIndex(), mapValue)
+					}
+				case int64:
+					if masked := mv & mask; masked != mv {
+						mapValue = protoreflect.ValueOfInt64(masked)
+						prevMap.Set(v.Step.MapIndex(), mapValue)
+					}
+				}
+				rng := (*rand.Rand)(unsafe.Pointer(p.ProtoRand))
+
+				switch idx := v.Step.MapIndex().Interface().(type) {
+				case uint64:
+					if masked := idx & mask; masked != idx {
+						newKey := protoreflect.MapKey(protoreflect.ValueOfUint64(masked))
+						for prevMap.Has(newKey) {
+							// this is an unfortunate and probably unlikely situation, but we
+							// can generate new values without breaking possibly seeded rng
+							// because we enabled stable range order.
+							newKey = protoreflect.MapKey(protoreflect.ValueOfUint64(rng.Uint64() & mask))
+						}
+						prevMap.Clear(v.Step.MapIndex())
+						prevMap.Set(newKey, mapValue)
+					}
+				case int64:
+					if masked := idx & mask; masked != idx {
+						newKey := protoreflect.MapKey(protoreflect.ValueOfInt64(masked))
+						for prevMap.Has(newKey) {
+							newKey = protoreflect.MapKey(protoreflect.ValueOfInt64(rng.Int63n(mask + 1)))
+						}
+						prevMap.Clear(v.Step.MapIndex())
+						prevMap.Set(newKey, mapValue)
+					}
+				}
+			}
+		case protopath.FieldAccessStep:
+			fd := v.Step.FieldDescriptor()
+			if fd.IsList() || fd.IsMap() {
+				return nil
+			}
+			switch fd.Kind() {
+			case protoreflect.Uint64Kind, protoreflect.Fixed64Kind:
+				if p.UseJsonCompatibleIntegers {
+					u := v.Value.Uint()
+					if masked := u & mask; masked != u {
+						newValue := protoreflect.ValueOfUint64(masked)
+						prev := vs.Index(-2)
+						switch prev.Step.Kind() {
+						case protopath.FieldAccessStep, protopath.RootStep:
+							prev.Value.Message().Set(fd, newValue)
+						}
+					}
+				}
+			case protoreflect.Int64Kind, protoreflect.Sfixed64Kind, protoreflect.Sint64Kind:
+				if p.UseJsonCompatibleIntegers {
+					u := v.Value.Int()
+					if masked := u & mask; masked != u {
+						newValue := protoreflect.ValueOfInt64(masked)
+						prev := vs.Index(-2)
+						switch prev.Step.Kind() {
+						case protopath.FieldAccessStep, protopath.RootStep:
+							prev.Value.Message().Set(fd, newValue)
+						}
+					}
+				}
+			case protoreflect.MessageKind:
+				switch fd.Message() {
+				case durationDesc:
+					if p.UseGoDurationLimits {
+						// restrict durations to the range allowed by time.Duration.
+						dpb := v.Value.Message().Interface().(*durationpb.Duration)
+						duration := dpb.AsDuration()
+						if duration == math.MinInt64 || duration == math.MaxInt64 {
+							nanos := duration.Nanoseconds()
+							dpb.Seconds = nanos / 1e9
+							dpb.Nanos = int32(nanos - dpb.Seconds*1e9)
+						}
+					}
+				case structDesc:
+					// ensure we don't end up with invalid structs, which can happen if
+					// the recursion limit is hit before the field oneof can be set
+					spb := v.Value.Message().Interface().(*structpb.Struct)
+					for field, value := range spb.Fields {
+						if value.Kind == nil {
+							spb.Fields[field] = structpb.NewNullValue()
+						}
 					}
 				}
 			}
 		}
 		return nil
-	})
+	}, nil)
 }

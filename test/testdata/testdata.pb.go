@@ -2283,6 +2283,194 @@ func (x *SampleConfiguration) GetMessageField() *SampleMessage {
 	return nil
 }
 
+type Int64Map struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Value map[int64]int64 `protobuf:"bytes,1,rep,name=value,proto3" json:"value,omitempty" protobuf_key:"varint,1,opt,name=key,proto3" protobuf_val:"varint,2,opt,name=value,proto3"`
+}
+
+func (x *Int64Map) Reset() {
+	*x = Int64Map{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_github_com_kralicky_protoutil_test_testdata_testdata_proto_msgTypes[12]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *Int64Map) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Int64Map) ProtoMessage() {}
+
+func (x *Int64Map) ProtoReflect() protoreflect.Message {
+	mi := &file_github_com_kralicky_protoutil_test_testdata_testdata_proto_msgTypes[12]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Int64Map.ProtoReflect.Descriptor instead.
+func (*Int64Map) Descriptor() ([]byte, []int) {
+	return file_github_com_kralicky_protoutil_test_testdata_testdata_proto_rawDescGZIP(), []int{12}
+}
+
+func (x *Int64Map) GetValue() map[int64]int64 {
+	if x != nil {
+		return x.Value
+	}
+	return nil
+}
+
+type Uint64Map struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Value map[uint64]uint64 `protobuf:"bytes,1,rep,name=value,proto3" json:"value,omitempty" protobuf_key:"varint,1,opt,name=key,proto3" protobuf_val:"varint,2,opt,name=value,proto3"`
+}
+
+func (x *Uint64Map) Reset() {
+	*x = Uint64Map{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_github_com_kralicky_protoutil_test_testdata_testdata_proto_msgTypes[13]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *Uint64Map) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Uint64Map) ProtoMessage() {}
+
+func (x *Uint64Map) ProtoReflect() protoreflect.Message {
+	mi := &file_github_com_kralicky_protoutil_test_testdata_testdata_proto_msgTypes[13]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Uint64Map.ProtoReflect.Descriptor instead.
+func (*Uint64Map) Descriptor() ([]byte, []int) {
+	return file_github_com_kralicky_protoutil_test_testdata_testdata_proto_rawDescGZIP(), []int{13}
+}
+
+func (x *Uint64Map) GetValue() map[uint64]uint64 {
+	if x != nil {
+		return x.Value
+	}
+	return nil
+}
+
+type Int64List struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Value []int64 `protobuf:"varint,1,rep,packed,name=value,proto3" json:"value,omitempty"`
+}
+
+func (x *Int64List) Reset() {
+	*x = Int64List{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_github_com_kralicky_protoutil_test_testdata_testdata_proto_msgTypes[14]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *Int64List) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Int64List) ProtoMessage() {}
+
+func (x *Int64List) ProtoReflect() protoreflect.Message {
+	mi := &file_github_com_kralicky_protoutil_test_testdata_testdata_proto_msgTypes[14]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Int64List.ProtoReflect.Descriptor instead.
+func (*Int64List) Descriptor() ([]byte, []int) {
+	return file_github_com_kralicky_protoutil_test_testdata_testdata_proto_rawDescGZIP(), []int{14}
+}
+
+func (x *Int64List) GetValue() []int64 {
+	if x != nil {
+		return x.Value
+	}
+	return nil
+}
+
+type Uint64List struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Value []uint64 `protobuf:"varint,1,rep,packed,name=value,proto3" json:"value,omitempty"`
+}
+
+func (x *Uint64List) Reset() {
+	*x = Uint64List{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_github_com_kralicky_protoutil_test_testdata_testdata_proto_msgTypes[15]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *Uint64List) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Uint64List) ProtoMessage() {}
+
+func (x *Uint64List) ProtoReflect() protoreflect.Message {
+	mi := &file_github_com_kralicky_protoutil_test_testdata_testdata_proto_msgTypes[15]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Uint64List.ProtoReflect.Descriptor instead.
+func (*Uint64List) Descriptor() ([]byte, []int) {
+	return file_github_com_kralicky_protoutil_test_testdata_testdata_proto_rawDescGZIP(), []int{15}
+}
+
+func (x *Uint64List) GetValue() []uint64 {
+	if x != nil {
+		return x.Value
+	}
+	return nil
+}
+
 type Message_NestedMessage struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -2298,7 +2486,7 @@ type Message_NestedMessage struct {
 func (x *Message_NestedMessage) Reset() {
 	*x = Message_NestedMessage{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_github_com_kralicky_protoutil_test_testdata_testdata_proto_msgTypes[34]
+		mi := &file_github_com_kralicky_protoutil_test_testdata_testdata_proto_msgTypes[38]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2311,7 +2499,7 @@ func (x *Message_NestedMessage) String() string {
 func (*Message_NestedMessage) ProtoMessage() {}
 
 func (x *Message_NestedMessage) ProtoReflect() protoreflect.Message {
-	mi := &file_github_com_kralicky_protoutil_test_testdata_testdata_proto_msgTypes[34]
+	mi := &file_github_com_kralicky_protoutil_test_testdata_testdata_proto_msgTypes[38]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2371,7 +2559,7 @@ type Message_NestedMessage_NestedMessage2 struct {
 func (x *Message_NestedMessage_NestedMessage2) Reset() {
 	*x = Message_NestedMessage_NestedMessage2{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_github_com_kralicky_protoutil_test_testdata_testdata_proto_msgTypes[35]
+		mi := &file_github_com_kralicky_protoutil_test_testdata_testdata_proto_msgTypes[39]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2384,7 +2572,7 @@ func (x *Message_NestedMessage_NestedMessage2) String() string {
 func (*Message_NestedMessage_NestedMessage2) ProtoMessage() {}
 
 func (x *Message_NestedMessage_NestedMessage2) ProtoReflect() protoreflect.Message {
-	mi := &file_github_com_kralicky_protoutil_test_testdata_testdata_proto_msgTypes[35]
+	mi := &file_github_com_kralicky_protoutil_test_testdata_testdata_proto_msgTypes[39]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2412,7 +2600,7 @@ type Message_NestedMessage_NestedMessage2_NestedMessage3 struct {
 func (x *Message_NestedMessage_NestedMessage2_NestedMessage3) Reset() {
 	*x = Message_NestedMessage_NestedMessage2_NestedMessage3{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_github_com_kralicky_protoutil_test_testdata_testdata_proto_msgTypes[37]
+		mi := &file_github_com_kralicky_protoutil_test_testdata_testdata_proto_msgTypes[41]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2425,7 +2613,7 @@ func (x *Message_NestedMessage_NestedMessage2_NestedMessage3) String() string {
 func (*Message_NestedMessage_NestedMessage2_NestedMessage3) ProtoMessage() {}
 
 func (x *Message_NestedMessage_NestedMessage2_NestedMessage3) ProtoReflect() protoreflect.Message {
-	mi := &file_github_com_kralicky_protoutil_test_testdata_testdata_proto_msgTypes[37]
+	mi := &file_github_com_kralicky_protoutil_test_testdata_testdata_proto_msgTypes[41]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2470,7 +2658,7 @@ type Message2_NestedMessage struct {
 func (x *Message2_NestedMessage) Reset() {
 	*x = Message2_NestedMessage{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_github_com_kralicky_protoutil_test_testdata_testdata_proto_msgTypes[59]
+		mi := &file_github_com_kralicky_protoutil_test_testdata_testdata_proto_msgTypes[63]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2483,7 +2671,7 @@ func (x *Message2_NestedMessage) String() string {
 func (*Message2_NestedMessage) ProtoMessage() {}
 
 func (x *Message2_NestedMessage) ProtoReflect() protoreflect.Message {
-	mi := &file_github_com_kralicky_protoutil_test_testdata_testdata_proto_msgTypes[59]
+	mi := &file_github_com_kralicky_protoutil_test_testdata_testdata_proto_msgTypes[63]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2543,7 +2731,7 @@ type Message2_NestedMessage_NestedMessage2 struct {
 func (x *Message2_NestedMessage_NestedMessage2) Reset() {
 	*x = Message2_NestedMessage_NestedMessage2{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_github_com_kralicky_protoutil_test_testdata_testdata_proto_msgTypes[60]
+		mi := &file_github_com_kralicky_protoutil_test_testdata_testdata_proto_msgTypes[64]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2556,7 +2744,7 @@ func (x *Message2_NestedMessage_NestedMessage2) String() string {
 func (*Message2_NestedMessage_NestedMessage2) ProtoMessage() {}
 
 func (x *Message2_NestedMessage_NestedMessage2) ProtoReflect() protoreflect.Message {
-	mi := &file_github_com_kralicky_protoutil_test_testdata_testdata_proto_msgTypes[60]
+	mi := &file_github_com_kralicky_protoutil_test_testdata_testdata_proto_msgTypes[64]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2584,7 +2772,7 @@ type Message2_NestedMessage_NestedMessage2_NestedMessage3 struct {
 func (x *Message2_NestedMessage_NestedMessage2_NestedMessage3) Reset() {
 	*x = Message2_NestedMessage_NestedMessage2_NestedMessage3{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_github_com_kralicky_protoutil_test_testdata_testdata_proto_msgTypes[62]
+		mi := &file_github_com_kralicky_protoutil_test_testdata_testdata_proto_msgTypes[66]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2597,7 +2785,7 @@ func (x *Message2_NestedMessage_NestedMessage2_NestedMessage3) String() string {
 func (*Message2_NestedMessage_NestedMessage2_NestedMessage3) ProtoMessage() {}
 
 func (x *Message2_NestedMessage_NestedMessage2_NestedMessage3) ProtoReflect() protoreflect.Message {
-	mi := &file_github_com_kralicky_protoutil_test_testdata_testdata_proto_msgTypes[62]
+	mi := &file_github_com_kralicky_protoutil_test_testdata_testdata_proto_msgTypes[66]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3601,13 +3789,33 @@ var file_github_com_kralicky_protoutil_test_testdata_testdata_proto_rawDesc = []
 	0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x42, 0x0e, 0x0a, 0x0c, 0x5f, 0x73, 0x74, 0x72, 0x69, 0x6e,
 	0x67, 0x46, 0x69, 0x65, 0x6c, 0x64, 0x42, 0x0d, 0x0a, 0x0b, 0x5f, 0x62, 0x79, 0x74, 0x65, 0x73,
 	0x46, 0x69, 0x65, 0x6c, 0x64, 0x42, 0x0c, 0x0a, 0x0a, 0x5f, 0x65, 0x6e, 0x75, 0x6d, 0x46, 0x69,
-	0x65, 0x6c, 0x64, 0x2a, 0x2b, 0x0a, 0x0a, 0x53, 0x61, 0x6d, 0x70, 0x6c, 0x65, 0x45, 0x6e, 0x75,
-	0x6d, 0x12, 0x0b, 0x0a, 0x07, 0x55, 0x6e, 0x6b, 0x6e, 0x6f, 0x77, 0x6e, 0x10, 0x00, 0x12, 0x07,
-	0x0a, 0x03, 0x46, 0x6f, 0x6f, 0x10, 0x01, 0x12, 0x07, 0x0a, 0x03, 0x42, 0x61, 0x72, 0x10, 0x02,
-	0x42, 0x2d, 0x5a, 0x2b, 0x67, 0x69, 0x74, 0x68, 0x75, 0x62, 0x2e, 0x63, 0x6f, 0x6d, 0x2f, 0x6b,
-	0x72, 0x61, 0x6c, 0x69, 0x63, 0x6b, 0x79, 0x2f, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x75, 0x74, 0x69,
-	0x6c, 0x2f, 0x74, 0x65, 0x73, 0x74, 0x2f, 0x74, 0x65, 0x73, 0x74, 0x64, 0x61, 0x74, 0x61, 0x62,
-	0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x65, 0x6c, 0x64, 0x22, 0x79, 0x0a, 0x08, 0x49, 0x6e, 0x74, 0x36, 0x34, 0x4d, 0x61, 0x70, 0x12,
+	0x33, 0x0a, 0x05, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x1d,
+	0x2e, 0x74, 0x65, 0x73, 0x74, 0x64, 0x61, 0x74, 0x61, 0x2e, 0x49, 0x6e, 0x74, 0x36, 0x34, 0x4d,
+	0x61, 0x70, 0x2e, 0x56, 0x61, 0x6c, 0x75, 0x65, 0x45, 0x6e, 0x74, 0x72, 0x79, 0x52, 0x05, 0x76,
+	0x61, 0x6c, 0x75, 0x65, 0x1a, 0x38, 0x0a, 0x0a, 0x56, 0x61, 0x6c, 0x75, 0x65, 0x45, 0x6e, 0x74,
+	0x72, 0x79, 0x12, 0x10, 0x0a, 0x03, 0x6b, 0x65, 0x79, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52,
+	0x03, 0x6b, 0x65, 0x79, 0x12, 0x14, 0x0a, 0x05, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x18, 0x02, 0x20,
+	0x01, 0x28, 0x03, 0x52, 0x05, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x3a, 0x02, 0x38, 0x01, 0x22, 0x7b,
+	0x0a, 0x09, 0x55, 0x69, 0x6e, 0x74, 0x36, 0x34, 0x4d, 0x61, 0x70, 0x12, 0x34, 0x0a, 0x05, 0x76,
+	0x61, 0x6c, 0x75, 0x65, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x1e, 0x2e, 0x74, 0x65, 0x73,
+	0x74, 0x64, 0x61, 0x74, 0x61, 0x2e, 0x55, 0x69, 0x6e, 0x74, 0x36, 0x34, 0x4d, 0x61, 0x70, 0x2e,
+	0x56, 0x61, 0x6c, 0x75, 0x65, 0x45, 0x6e, 0x74, 0x72, 0x79, 0x52, 0x05, 0x76, 0x61, 0x6c, 0x75,
+	0x65, 0x1a, 0x38, 0x0a, 0x0a, 0x56, 0x61, 0x6c, 0x75, 0x65, 0x45, 0x6e, 0x74, 0x72, 0x79, 0x12,
+	0x10, 0x0a, 0x03, 0x6b, 0x65, 0x79, 0x18, 0x01, 0x20, 0x01, 0x28, 0x04, 0x52, 0x03, 0x6b, 0x65,
+	0x79, 0x12, 0x14, 0x0a, 0x05, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x04,
+	0x52, 0x05, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x3a, 0x02, 0x38, 0x01, 0x22, 0x21, 0x0a, 0x09, 0x49,
+	0x6e, 0x74, 0x36, 0x34, 0x4c, 0x69, 0x73, 0x74, 0x12, 0x14, 0x0a, 0x05, 0x76, 0x61, 0x6c, 0x75,
+	0x65, 0x18, 0x01, 0x20, 0x03, 0x28, 0x03, 0x52, 0x05, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x22, 0x22,
+	0x0a, 0x0a, 0x55, 0x69, 0x6e, 0x74, 0x36, 0x34, 0x4c, 0x69, 0x73, 0x74, 0x12, 0x14, 0x0a, 0x05,
+	0x76, 0x61, 0x6c, 0x75, 0x65, 0x18, 0x01, 0x20, 0x03, 0x28, 0x04, 0x52, 0x05, 0x76, 0x61, 0x6c,
+	0x75, 0x65, 0x2a, 0x2b, 0x0a, 0x0a, 0x53, 0x61, 0x6d, 0x70, 0x6c, 0x65, 0x45, 0x6e, 0x75, 0x6d,
+	0x12, 0x0b, 0x0a, 0x07, 0x55, 0x6e, 0x6b, 0x6e, 0x6f, 0x77, 0x6e, 0x10, 0x00, 0x12, 0x07, 0x0a,
+	0x03, 0x46, 0x6f, 0x6f, 0x10, 0x01, 0x12, 0x07, 0x0a, 0x03, 0x42, 0x61, 0x72, 0x10, 0x02, 0x42,
+	0x2d, 0x5a, 0x2b, 0x67, 0x69, 0x74, 0x68, 0x75, 0x62, 0x2e, 0x63, 0x6f, 0x6d, 0x2f, 0x6b, 0x72,
+	0x61, 0x6c, 0x69, 0x63, 0x6b, 0x79, 0x2f, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x75, 0x74, 0x69, 0x6c,
+	0x2f, 0x74, 0x65, 0x73, 0x74, 0x2f, 0x74, 0x65, 0x73, 0x74, 0x64, 0x61, 0x74, 0x61, 0x62, 0x06,
+	0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -3623,7 +3831,7 @@ func file_github_com_kralicky_protoutil_test_testdata_testdata_proto_rawDescGZIP
 }
 
 var file_github_com_kralicky_protoutil_test_testdata_testdata_proto_enumTypes = make([]protoimpl.EnumInfo, 7)
-var file_github_com_kralicky_protoutil_test_testdata_testdata_proto_msgTypes = make([]protoimpl.MessageInfo, 64)
+var file_github_com_kralicky_protoutil_test_testdata_testdata_proto_msgTypes = make([]protoimpl.MessageInfo, 70)
 var file_github_com_kralicky_protoutil_test_testdata_testdata_proto_goTypes = []any{
 	(SampleEnum)(0),                                        // 0: testdata.SampleEnum
 	(Message_Color)(0),                                     // 1: testdata.Message.Color
@@ -3644,165 +3852,171 @@ var file_github_com_kralicky_protoutil_test_testdata_testdata_proto_goTypes = []
 	(*Sample6FieldMsg)(nil),                                // 16: testdata.Sample6FieldMsg
 	(*Revision)(nil),                                       // 17: testdata.Revision
 	(*SampleConfiguration)(nil),                            // 18: testdata.SampleConfiguration
-	nil,                                                    // 19: testdata.Message.Int32ToBoolEntry
-	nil,                                                    // 20: testdata.Message.Int64ToStringEntry
-	nil,                                                    // 21: testdata.Message.Uint32ToBytesEntry
-	nil,                                                    // 22: testdata.Message.Uint64ToAnyEntry
-	nil,                                                    // 23: testdata.Message.BoolToMessageEntry
-	nil,                                                    // 24: testdata.Message.StringToFloatEntry
-	nil,                                                    // 25: testdata.Message.StringToDoubleEntry
-	nil,                                                    // 26: testdata.Message.StringToBoolEntry
-	nil,                                                    // 27: testdata.Message.StringToStringEntry
-	nil,                                                    // 28: testdata.Message.StringToBytesEntry
-	nil,                                                    // 29: testdata.Message.StringToAnyEntry
-	nil,                                                    // 30: testdata.Message.StringToDurationEntry
-	nil,                                                    // 31: testdata.Message.StringToTimestampEntry
-	nil,                                                    // 32: testdata.Message.StringToStructEntry
-	nil,                                                    // 33: testdata.Message.StringToUint32ValueEntry
-	nil,                                                    // 34: testdata.Message.StringToUint64ValueEntry
-	nil,                                                    // 35: testdata.Message.StringToInt32ValueEntry
-	nil,                                                    // 36: testdata.Message.StringToInt64ValueEntry
-	nil,                                                    // 37: testdata.Message.StringToBoolValueEntry
-	nil,                                                    // 38: testdata.Message.StringToStringValueEntry
-	nil,                                                    // 39: testdata.Message.StringToBytesValueEntry
-	nil,                                                    // 40: testdata.Message.StringToMessageEntry
-	(*Message_NestedMessage)(nil),                          // 41: testdata.Message.NestedMessage
-	(*Message_NestedMessage_NestedMessage2)(nil), // 42: testdata.Message.NestedMessage.NestedMessage2
-	nil, // 43: testdata.Message.NestedMessage.NestedStringToInt32Entry
-	(*Message_NestedMessage_NestedMessage2_NestedMessage3)(nil), // 44: testdata.Message.NestedMessage.NestedMessage2.NestedMessage3
-	nil,                            // 45: testdata.Message2.Int32ToBoolEntry
-	nil,                            // 46: testdata.Message2.Int64ToStringEntry
-	nil,                            // 47: testdata.Message2.Uint32ToBytesEntry
-	nil,                            // 48: testdata.Message2.Uint64ToAnyEntry
-	nil,                            // 49: testdata.Message2.BoolToAnyEntry
-	nil,                            // 50: testdata.Message2.StringToFloatEntry
-	nil,                            // 51: testdata.Message2.StringToDoubleEntry
-	nil,                            // 52: testdata.Message2.StringToBoolEntry
-	nil,                            // 53: testdata.Message2.StringToStringEntry
-	nil,                            // 54: testdata.Message2.StringToBytesEntry
-	nil,                            // 55: testdata.Message2.StringToAnyEntry
-	nil,                            // 56: testdata.Message2.StringToDurationEntry
-	nil,                            // 57: testdata.Message2.StringToTimestampEntry
-	nil,                            // 58: testdata.Message2.StringToStructEntry
-	nil,                            // 59: testdata.Message2.StringToUint32ValueEntry
-	nil,                            // 60: testdata.Message2.StringToUint64ValueEntry
-	nil,                            // 61: testdata.Message2.StringToInt32ValueEntry
-	nil,                            // 62: testdata.Message2.StringToInt64ValueEntry
-	nil,                            // 63: testdata.Message2.StringToBoolValueEntry
-	nil,                            // 64: testdata.Message2.StringToStringValueEntry
-	nil,                            // 65: testdata.Message2.StringToBytesValueEntry
-	(*Message2_NestedMessage)(nil), // 66: testdata.Message2.NestedMessage
-	(*Message2_NestedMessage_NestedMessage2)(nil), // 67: testdata.Message2.NestedMessage.NestedMessage2
-	nil, // 68: testdata.Message2.NestedMessage.NestedStringToInt32Entry
-	(*Message2_NestedMessage_NestedMessage2_NestedMessage3)(nil), // 69: testdata.Message2.NestedMessage.NestedMessage2.NestedMessage3
-	nil,                            // 70: testdata.SampleConfiguration.MapFieldEntry
-	(*anypb.Any)(nil),              // 71: google.protobuf.Any
-	(*durationpb.Duration)(nil),    // 72: google.protobuf.Duration
-	(*timestamppb.Timestamp)(nil),  // 73: google.protobuf.Timestamp
-	(*structpb.Struct)(nil),        // 74: google.protobuf.Struct
-	(*wrapperspb.UInt32Value)(nil), // 75: google.protobuf.UInt32Value
-	(*wrapperspb.UInt64Value)(nil), // 76: google.protobuf.UInt64Value
-	(*wrapperspb.Int32Value)(nil),  // 77: google.protobuf.Int32Value
-	(*wrapperspb.Int64Value)(nil),  // 78: google.protobuf.Int64Value
-	(*wrapperspb.BoolValue)(nil),   // 79: google.protobuf.BoolValue
-	(*wrapperspb.StringValue)(nil), // 80: google.protobuf.StringValue
-	(*wrapperspb.BytesValue)(nil),  // 81: google.protobuf.BytesValue
+	(*Int64Map)(nil),                                       // 19: testdata.Int64Map
+	(*Uint64Map)(nil),                                      // 20: testdata.Uint64Map
+	(*Int64List)(nil),                                      // 21: testdata.Int64List
+	(*Uint64List)(nil),                                     // 22: testdata.Uint64List
+	nil,                                                    // 23: testdata.Message.Int32ToBoolEntry
+	nil,                                                    // 24: testdata.Message.Int64ToStringEntry
+	nil,                                                    // 25: testdata.Message.Uint32ToBytesEntry
+	nil,                                                    // 26: testdata.Message.Uint64ToAnyEntry
+	nil,                                                    // 27: testdata.Message.BoolToMessageEntry
+	nil,                                                    // 28: testdata.Message.StringToFloatEntry
+	nil,                                                    // 29: testdata.Message.StringToDoubleEntry
+	nil,                                                    // 30: testdata.Message.StringToBoolEntry
+	nil,                                                    // 31: testdata.Message.StringToStringEntry
+	nil,                                                    // 32: testdata.Message.StringToBytesEntry
+	nil,                                                    // 33: testdata.Message.StringToAnyEntry
+	nil,                                                    // 34: testdata.Message.StringToDurationEntry
+	nil,                                                    // 35: testdata.Message.StringToTimestampEntry
+	nil,                                                    // 36: testdata.Message.StringToStructEntry
+	nil,                                                    // 37: testdata.Message.StringToUint32ValueEntry
+	nil,                                                    // 38: testdata.Message.StringToUint64ValueEntry
+	nil,                                                    // 39: testdata.Message.StringToInt32ValueEntry
+	nil,                                                    // 40: testdata.Message.StringToInt64ValueEntry
+	nil,                                                    // 41: testdata.Message.StringToBoolValueEntry
+	nil,                                                    // 42: testdata.Message.StringToStringValueEntry
+	nil,                                                    // 43: testdata.Message.StringToBytesValueEntry
+	nil,                                                    // 44: testdata.Message.StringToMessageEntry
+	(*Message_NestedMessage)(nil),                          // 45: testdata.Message.NestedMessage
+	(*Message_NestedMessage_NestedMessage2)(nil), // 46: testdata.Message.NestedMessage.NestedMessage2
+	nil, // 47: testdata.Message.NestedMessage.NestedStringToInt32Entry
+	(*Message_NestedMessage_NestedMessage2_NestedMessage3)(nil), // 48: testdata.Message.NestedMessage.NestedMessage2.NestedMessage3
+	nil,                            // 49: testdata.Message2.Int32ToBoolEntry
+	nil,                            // 50: testdata.Message2.Int64ToStringEntry
+	nil,                            // 51: testdata.Message2.Uint32ToBytesEntry
+	nil,                            // 52: testdata.Message2.Uint64ToAnyEntry
+	nil,                            // 53: testdata.Message2.BoolToAnyEntry
+	nil,                            // 54: testdata.Message2.StringToFloatEntry
+	nil,                            // 55: testdata.Message2.StringToDoubleEntry
+	nil,                            // 56: testdata.Message2.StringToBoolEntry
+	nil,                            // 57: testdata.Message2.StringToStringEntry
+	nil,                            // 58: testdata.Message2.StringToBytesEntry
+	nil,                            // 59: testdata.Message2.StringToAnyEntry
+	nil,                            // 60: testdata.Message2.StringToDurationEntry
+	nil,                            // 61: testdata.Message2.StringToTimestampEntry
+	nil,                            // 62: testdata.Message2.StringToStructEntry
+	nil,                            // 63: testdata.Message2.StringToUint32ValueEntry
+	nil,                            // 64: testdata.Message2.StringToUint64ValueEntry
+	nil,                            // 65: testdata.Message2.StringToInt32ValueEntry
+	nil,                            // 66: testdata.Message2.StringToInt64ValueEntry
+	nil,                            // 67: testdata.Message2.StringToBoolValueEntry
+	nil,                            // 68: testdata.Message2.StringToStringValueEntry
+	nil,                            // 69: testdata.Message2.StringToBytesValueEntry
+	(*Message2_NestedMessage)(nil), // 70: testdata.Message2.NestedMessage
+	(*Message2_NestedMessage_NestedMessage2)(nil), // 71: testdata.Message2.NestedMessage.NestedMessage2
+	nil, // 72: testdata.Message2.NestedMessage.NestedStringToInt32Entry
+	(*Message2_NestedMessage_NestedMessage2_NestedMessage3)(nil), // 73: testdata.Message2.NestedMessage.NestedMessage2.NestedMessage3
+	nil,                            // 74: testdata.SampleConfiguration.MapFieldEntry
+	nil,                            // 75: testdata.Int64Map.ValueEntry
+	nil,                            // 76: testdata.Uint64Map.ValueEntry
+	(*anypb.Any)(nil),              // 77: google.protobuf.Any
+	(*durationpb.Duration)(nil),    // 78: google.protobuf.Duration
+	(*timestamppb.Timestamp)(nil),  // 79: google.protobuf.Timestamp
+	(*structpb.Struct)(nil),        // 80: google.protobuf.Struct
+	(*wrapperspb.UInt32Value)(nil), // 81: google.protobuf.UInt32Value
+	(*wrapperspb.UInt64Value)(nil), // 82: google.protobuf.UInt64Value
+	(*wrapperspb.Int32Value)(nil),  // 83: google.protobuf.Int32Value
+	(*wrapperspb.Int64Value)(nil),  // 84: google.protobuf.Int64Value
+	(*wrapperspb.BoolValue)(nil),   // 85: google.protobuf.BoolValue
+	(*wrapperspb.StringValue)(nil), // 86: google.protobuf.StringValue
+	(*wrapperspb.BytesValue)(nil),  // 87: google.protobuf.BytesValue
 }
 var file_github_com_kralicky_protoutil_test_testdata_testdata_proto_depIdxs = []int32{
-	71,  // 0: testdata.Message.any_field:type_name -> google.protobuf.Any
-	72,  // 1: testdata.Message.duration_field:type_name -> google.protobuf.Duration
-	73,  // 2: testdata.Message.timestamp_field:type_name -> google.protobuf.Timestamp
-	74,  // 3: testdata.Message.struct_field:type_name -> google.protobuf.Struct
-	75,  // 4: testdata.Message.uint32_value_field:type_name -> google.protobuf.UInt32Value
-	76,  // 5: testdata.Message.uint64_value_field:type_name -> google.protobuf.UInt64Value
-	77,  // 6: testdata.Message.int32_value_field:type_name -> google.protobuf.Int32Value
-	78,  // 7: testdata.Message.int64_value_field:type_name -> google.protobuf.Int64Value
-	79,  // 8: testdata.Message.bool_value_field:type_name -> google.protobuf.BoolValue
-	80,  // 9: testdata.Message.string_value_field:type_name -> google.protobuf.StringValue
-	81,  // 10: testdata.Message.bytes_value_field:type_name -> google.protobuf.BytesValue
+	77,  // 0: testdata.Message.any_field:type_name -> google.protobuf.Any
+	78,  // 1: testdata.Message.duration_field:type_name -> google.protobuf.Duration
+	79,  // 2: testdata.Message.timestamp_field:type_name -> google.protobuf.Timestamp
+	80,  // 3: testdata.Message.struct_field:type_name -> google.protobuf.Struct
+	81,  // 4: testdata.Message.uint32_value_field:type_name -> google.protobuf.UInt32Value
+	82,  // 5: testdata.Message.uint64_value_field:type_name -> google.protobuf.UInt64Value
+	83,  // 6: testdata.Message.int32_value_field:type_name -> google.protobuf.Int32Value
+	84,  // 7: testdata.Message.int64_value_field:type_name -> google.protobuf.Int64Value
+	85,  // 8: testdata.Message.bool_value_field:type_name -> google.protobuf.BoolValue
+	86,  // 9: testdata.Message.string_value_field:type_name -> google.protobuf.StringValue
+	87,  // 10: testdata.Message.bytes_value_field:type_name -> google.protobuf.BytesValue
 	8,   // 11: testdata.Message.message_field:type_name -> testdata.Message2
-	71,  // 12: testdata.Message.any_list:type_name -> google.protobuf.Any
-	72,  // 13: testdata.Message.duration_list:type_name -> google.protobuf.Duration
-	73,  // 14: testdata.Message.timestamp_list:type_name -> google.protobuf.Timestamp
-	74,  // 15: testdata.Message.struct_list:type_name -> google.protobuf.Struct
-	75,  // 16: testdata.Message.uint32_value_list:type_name -> google.protobuf.UInt32Value
-	76,  // 17: testdata.Message.uint64_value_list:type_name -> google.protobuf.UInt64Value
-	77,  // 18: testdata.Message.int32_value_list:type_name -> google.protobuf.Int32Value
-	78,  // 19: testdata.Message.int64_value_list:type_name -> google.protobuf.Int64Value
-	79,  // 20: testdata.Message.bool_value_list:type_name -> google.protobuf.BoolValue
-	80,  // 21: testdata.Message.string_value_list:type_name -> google.protobuf.StringValue
-	81,  // 22: testdata.Message.bytes_value_list:type_name -> google.protobuf.BytesValue
+	77,  // 12: testdata.Message.any_list:type_name -> google.protobuf.Any
+	78,  // 13: testdata.Message.duration_list:type_name -> google.protobuf.Duration
+	79,  // 14: testdata.Message.timestamp_list:type_name -> google.protobuf.Timestamp
+	80,  // 15: testdata.Message.struct_list:type_name -> google.protobuf.Struct
+	81,  // 16: testdata.Message.uint32_value_list:type_name -> google.protobuf.UInt32Value
+	82,  // 17: testdata.Message.uint64_value_list:type_name -> google.protobuf.UInt64Value
+	83,  // 18: testdata.Message.int32_value_list:type_name -> google.protobuf.Int32Value
+	84,  // 19: testdata.Message.int64_value_list:type_name -> google.protobuf.Int64Value
+	85,  // 20: testdata.Message.bool_value_list:type_name -> google.protobuf.BoolValue
+	86,  // 21: testdata.Message.string_value_list:type_name -> google.protobuf.StringValue
+	87,  // 22: testdata.Message.bytes_value_list:type_name -> google.protobuf.BytesValue
 	8,   // 23: testdata.Message.message_list:type_name -> testdata.Message2
-	19,  // 24: testdata.Message.int32_to_bool:type_name -> testdata.Message.Int32ToBoolEntry
-	20,  // 25: testdata.Message.int64_to_string:type_name -> testdata.Message.Int64ToStringEntry
-	21,  // 26: testdata.Message.uint32_to_bytes:type_name -> testdata.Message.Uint32ToBytesEntry
-	22,  // 27: testdata.Message.uint64_to_any:type_name -> testdata.Message.Uint64ToAnyEntry
-	23,  // 28: testdata.Message.bool_to_message:type_name -> testdata.Message.BoolToMessageEntry
-	24,  // 29: testdata.Message.string_to_float:type_name -> testdata.Message.StringToFloatEntry
-	25,  // 30: testdata.Message.string_to_double:type_name -> testdata.Message.StringToDoubleEntry
-	26,  // 31: testdata.Message.string_to_bool:type_name -> testdata.Message.StringToBoolEntry
-	27,  // 32: testdata.Message.string_to_string:type_name -> testdata.Message.StringToStringEntry
-	28,  // 33: testdata.Message.string_to_bytes:type_name -> testdata.Message.StringToBytesEntry
-	29,  // 34: testdata.Message.string_to_any:type_name -> testdata.Message.StringToAnyEntry
-	30,  // 35: testdata.Message.string_to_duration:type_name -> testdata.Message.StringToDurationEntry
-	31,  // 36: testdata.Message.string_to_timestamp:type_name -> testdata.Message.StringToTimestampEntry
-	32,  // 37: testdata.Message.string_to_struct:type_name -> testdata.Message.StringToStructEntry
-	33,  // 38: testdata.Message.string_to_uint32_value:type_name -> testdata.Message.StringToUint32ValueEntry
-	34,  // 39: testdata.Message.string_to_uint64_value:type_name -> testdata.Message.StringToUint64ValueEntry
-	35,  // 40: testdata.Message.string_to_int32_value:type_name -> testdata.Message.StringToInt32ValueEntry
-	36,  // 41: testdata.Message.string_to_int64_value:type_name -> testdata.Message.StringToInt64ValueEntry
-	37,  // 42: testdata.Message.string_to_bool_value:type_name -> testdata.Message.StringToBoolValueEntry
-	38,  // 43: testdata.Message.string_to_string_value:type_name -> testdata.Message.StringToStringValueEntry
-	39,  // 44: testdata.Message.string_to_bytes_value:type_name -> testdata.Message.StringToBytesValueEntry
-	40,  // 45: testdata.Message.string_to_message:type_name -> testdata.Message.StringToMessageEntry
+	23,  // 24: testdata.Message.int32_to_bool:type_name -> testdata.Message.Int32ToBoolEntry
+	24,  // 25: testdata.Message.int64_to_string:type_name -> testdata.Message.Int64ToStringEntry
+	25,  // 26: testdata.Message.uint32_to_bytes:type_name -> testdata.Message.Uint32ToBytesEntry
+	26,  // 27: testdata.Message.uint64_to_any:type_name -> testdata.Message.Uint64ToAnyEntry
+	27,  // 28: testdata.Message.bool_to_message:type_name -> testdata.Message.BoolToMessageEntry
+	28,  // 29: testdata.Message.string_to_float:type_name -> testdata.Message.StringToFloatEntry
+	29,  // 30: testdata.Message.string_to_double:type_name -> testdata.Message.StringToDoubleEntry
+	30,  // 31: testdata.Message.string_to_bool:type_name -> testdata.Message.StringToBoolEntry
+	31,  // 32: testdata.Message.string_to_string:type_name -> testdata.Message.StringToStringEntry
+	32,  // 33: testdata.Message.string_to_bytes:type_name -> testdata.Message.StringToBytesEntry
+	33,  // 34: testdata.Message.string_to_any:type_name -> testdata.Message.StringToAnyEntry
+	34,  // 35: testdata.Message.string_to_duration:type_name -> testdata.Message.StringToDurationEntry
+	35,  // 36: testdata.Message.string_to_timestamp:type_name -> testdata.Message.StringToTimestampEntry
+	36,  // 37: testdata.Message.string_to_struct:type_name -> testdata.Message.StringToStructEntry
+	37,  // 38: testdata.Message.string_to_uint32_value:type_name -> testdata.Message.StringToUint32ValueEntry
+	38,  // 39: testdata.Message.string_to_uint64_value:type_name -> testdata.Message.StringToUint64ValueEntry
+	39,  // 40: testdata.Message.string_to_int32_value:type_name -> testdata.Message.StringToInt32ValueEntry
+	40,  // 41: testdata.Message.string_to_int64_value:type_name -> testdata.Message.StringToInt64ValueEntry
+	41,  // 42: testdata.Message.string_to_bool_value:type_name -> testdata.Message.StringToBoolValueEntry
+	42,  // 43: testdata.Message.string_to_string_value:type_name -> testdata.Message.StringToStringValueEntry
+	43,  // 44: testdata.Message.string_to_bytes_value:type_name -> testdata.Message.StringToBytesValueEntry
+	44,  // 45: testdata.Message.string_to_message:type_name -> testdata.Message.StringToMessageEntry
 	1,   // 46: testdata.Message.enum_field:type_name -> testdata.Message.Color
-	41,  // 47: testdata.Message.oneof_nested_message_field:type_name -> testdata.Message.NestedMessage
+	45,  // 47: testdata.Message.oneof_nested_message_field:type_name -> testdata.Message.NestedMessage
 	8,   // 48: testdata.Message.oneof_message_field:type_name -> testdata.Message2
-	71,  // 49: testdata.Message2.any_field:type_name -> google.protobuf.Any
-	72,  // 50: testdata.Message2.duration_field:type_name -> google.protobuf.Duration
-	73,  // 51: testdata.Message2.timestamp_field:type_name -> google.protobuf.Timestamp
-	74,  // 52: testdata.Message2.struct_field:type_name -> google.protobuf.Struct
-	75,  // 53: testdata.Message2.uint32_value_field:type_name -> google.protobuf.UInt32Value
-	76,  // 54: testdata.Message2.uint64_value_field:type_name -> google.protobuf.UInt64Value
-	77,  // 55: testdata.Message2.int32_value_field:type_name -> google.protobuf.Int32Value
-	78,  // 56: testdata.Message2.int64_value_field:type_name -> google.protobuf.Int64Value
-	79,  // 57: testdata.Message2.bool_value_field:type_name -> google.protobuf.BoolValue
-	80,  // 58: testdata.Message2.string_value_field:type_name -> google.protobuf.StringValue
-	81,  // 59: testdata.Message2.bytes_value_field:type_name -> google.protobuf.BytesValue
-	71,  // 60: testdata.Message2.any_list:type_name -> google.protobuf.Any
-	72,  // 61: testdata.Message2.duration_list:type_name -> google.protobuf.Duration
-	73,  // 62: testdata.Message2.timestamp_list:type_name -> google.protobuf.Timestamp
-	74,  // 63: testdata.Message2.struct_list:type_name -> google.protobuf.Struct
-	75,  // 64: testdata.Message2.uint32_value_list:type_name -> google.protobuf.UInt32Value
-	76,  // 65: testdata.Message2.uint64_value_list:type_name -> google.protobuf.UInt64Value
-	77,  // 66: testdata.Message2.int32_value_list:type_name -> google.protobuf.Int32Value
-	78,  // 67: testdata.Message2.int64_value_list:type_name -> google.protobuf.Int64Value
-	79,  // 68: testdata.Message2.bool_value_list:type_name -> google.protobuf.BoolValue
-	80,  // 69: testdata.Message2.string_value_list:type_name -> google.protobuf.StringValue
-	81,  // 70: testdata.Message2.bytes_value_list:type_name -> google.protobuf.BytesValue
-	45,  // 71: testdata.Message2.int32_to_bool:type_name -> testdata.Message2.Int32ToBoolEntry
-	46,  // 72: testdata.Message2.int64_to_string:type_name -> testdata.Message2.Int64ToStringEntry
-	47,  // 73: testdata.Message2.uint32_to_bytes:type_name -> testdata.Message2.Uint32ToBytesEntry
-	48,  // 74: testdata.Message2.uint64_to_any:type_name -> testdata.Message2.Uint64ToAnyEntry
-	49,  // 75: testdata.Message2.bool_to_any:type_name -> testdata.Message2.BoolToAnyEntry
-	50,  // 76: testdata.Message2.string_to_float:type_name -> testdata.Message2.StringToFloatEntry
-	51,  // 77: testdata.Message2.string_to_double:type_name -> testdata.Message2.StringToDoubleEntry
-	52,  // 78: testdata.Message2.string_to_bool:type_name -> testdata.Message2.StringToBoolEntry
-	53,  // 79: testdata.Message2.string_to_string:type_name -> testdata.Message2.StringToStringEntry
-	54,  // 80: testdata.Message2.string_to_bytes:type_name -> testdata.Message2.StringToBytesEntry
-	55,  // 81: testdata.Message2.string_to_any:type_name -> testdata.Message2.StringToAnyEntry
-	56,  // 82: testdata.Message2.string_to_duration:type_name -> testdata.Message2.StringToDurationEntry
-	57,  // 83: testdata.Message2.string_to_timestamp:type_name -> testdata.Message2.StringToTimestampEntry
-	58,  // 84: testdata.Message2.string_to_struct:type_name -> testdata.Message2.StringToStructEntry
-	59,  // 85: testdata.Message2.string_to_uint32_value:type_name -> testdata.Message2.StringToUint32ValueEntry
-	60,  // 86: testdata.Message2.string_to_uint64_value:type_name -> testdata.Message2.StringToUint64ValueEntry
-	61,  // 87: testdata.Message2.string_to_int32_value:type_name -> testdata.Message2.StringToInt32ValueEntry
-	62,  // 88: testdata.Message2.string_to_int64_value:type_name -> testdata.Message2.StringToInt64ValueEntry
-	63,  // 89: testdata.Message2.string_to_bool_value:type_name -> testdata.Message2.StringToBoolValueEntry
-	64,  // 90: testdata.Message2.string_to_string_value:type_name -> testdata.Message2.StringToStringValueEntry
-	65,  // 91: testdata.Message2.string_to_bytes_value:type_name -> testdata.Message2.StringToBytesValueEntry
+	77,  // 49: testdata.Message2.any_field:type_name -> google.protobuf.Any
+	78,  // 50: testdata.Message2.duration_field:type_name -> google.protobuf.Duration
+	79,  // 51: testdata.Message2.timestamp_field:type_name -> google.protobuf.Timestamp
+	80,  // 52: testdata.Message2.struct_field:type_name -> google.protobuf.Struct
+	81,  // 53: testdata.Message2.uint32_value_field:type_name -> google.protobuf.UInt32Value
+	82,  // 54: testdata.Message2.uint64_value_field:type_name -> google.protobuf.UInt64Value
+	83,  // 55: testdata.Message2.int32_value_field:type_name -> google.protobuf.Int32Value
+	84,  // 56: testdata.Message2.int64_value_field:type_name -> google.protobuf.Int64Value
+	85,  // 57: testdata.Message2.bool_value_field:type_name -> google.protobuf.BoolValue
+	86,  // 58: testdata.Message2.string_value_field:type_name -> google.protobuf.StringValue
+	87,  // 59: testdata.Message2.bytes_value_field:type_name -> google.protobuf.BytesValue
+	77,  // 60: testdata.Message2.any_list:type_name -> google.protobuf.Any
+	78,  // 61: testdata.Message2.duration_list:type_name -> google.protobuf.Duration
+	79,  // 62: testdata.Message2.timestamp_list:type_name -> google.protobuf.Timestamp
+	80,  // 63: testdata.Message2.struct_list:type_name -> google.protobuf.Struct
+	81,  // 64: testdata.Message2.uint32_value_list:type_name -> google.protobuf.UInt32Value
+	82,  // 65: testdata.Message2.uint64_value_list:type_name -> google.protobuf.UInt64Value
+	83,  // 66: testdata.Message2.int32_value_list:type_name -> google.protobuf.Int32Value
+	84,  // 67: testdata.Message2.int64_value_list:type_name -> google.protobuf.Int64Value
+	85,  // 68: testdata.Message2.bool_value_list:type_name -> google.protobuf.BoolValue
+	86,  // 69: testdata.Message2.string_value_list:type_name -> google.protobuf.StringValue
+	87,  // 70: testdata.Message2.bytes_value_list:type_name -> google.protobuf.BytesValue
+	49,  // 71: testdata.Message2.int32_to_bool:type_name -> testdata.Message2.Int32ToBoolEntry
+	50,  // 72: testdata.Message2.int64_to_string:type_name -> testdata.Message2.Int64ToStringEntry
+	51,  // 73: testdata.Message2.uint32_to_bytes:type_name -> testdata.Message2.Uint32ToBytesEntry
+	52,  // 74: testdata.Message2.uint64_to_any:type_name -> testdata.Message2.Uint64ToAnyEntry
+	53,  // 75: testdata.Message2.bool_to_any:type_name -> testdata.Message2.BoolToAnyEntry
+	54,  // 76: testdata.Message2.string_to_float:type_name -> testdata.Message2.StringToFloatEntry
+	55,  // 77: testdata.Message2.string_to_double:type_name -> testdata.Message2.StringToDoubleEntry
+	56,  // 78: testdata.Message2.string_to_bool:type_name -> testdata.Message2.StringToBoolEntry
+	57,  // 79: testdata.Message2.string_to_string:type_name -> testdata.Message2.StringToStringEntry
+	58,  // 80: testdata.Message2.string_to_bytes:type_name -> testdata.Message2.StringToBytesEntry
+	59,  // 81: testdata.Message2.string_to_any:type_name -> testdata.Message2.StringToAnyEntry
+	60,  // 82: testdata.Message2.string_to_duration:type_name -> testdata.Message2.StringToDurationEntry
+	61,  // 83: testdata.Message2.string_to_timestamp:type_name -> testdata.Message2.StringToTimestampEntry
+	62,  // 84: testdata.Message2.string_to_struct:type_name -> testdata.Message2.StringToStructEntry
+	63,  // 85: testdata.Message2.string_to_uint32_value:type_name -> testdata.Message2.StringToUint32ValueEntry
+	64,  // 86: testdata.Message2.string_to_uint64_value:type_name -> testdata.Message2.StringToUint64ValueEntry
+	65,  // 87: testdata.Message2.string_to_int32_value:type_name -> testdata.Message2.StringToInt32ValueEntry
+	66,  // 88: testdata.Message2.string_to_int64_value:type_name -> testdata.Message2.StringToInt64ValueEntry
+	67,  // 89: testdata.Message2.string_to_bool_value:type_name -> testdata.Message2.StringToBoolValueEntry
+	68,  // 90: testdata.Message2.string_to_string_value:type_name -> testdata.Message2.StringToStringValueEntry
+	69,  // 91: testdata.Message2.string_to_bytes_value:type_name -> testdata.Message2.StringToBytesValueEntry
 	4,   // 92: testdata.Message2.enum_field:type_name -> testdata.Message2.Color
-	66,  // 93: testdata.Message2.oneof_nested_message_field:type_name -> testdata.Message2.NestedMessage
+	70,  // 93: testdata.Message2.oneof_nested_message_field:type_name -> testdata.Message2.NestedMessage
 	11,  // 94: testdata.SampleMessage.field1:type_name -> testdata.Sample1FieldMsg
 	12,  // 95: testdata.SampleMessage.field2:type_name -> testdata.Sample2FieldMsg
 	13,  // 96: testdata.SampleMessage.field3:type_name -> testdata.Sample3FieldMsg
@@ -3816,47 +4030,49 @@ var file_github_com_kralicky_protoutil_test_testdata_testdata_proto_depIdxs = []
 	14,  // 104: testdata.SampleMessage2.field4:type_name -> testdata.Sample4FieldMsg
 	15,  // 105: testdata.SampleMessage2.field5:type_name -> testdata.Sample5FieldMsg
 	16,  // 106: testdata.SampleMessage2.field6:type_name -> testdata.Sample6FieldMsg
-	73,  // 107: testdata.Revision.timestamp:type_name -> google.protobuf.Timestamp
+	79,  // 107: testdata.Revision.timestamp:type_name -> google.protobuf.Timestamp
 	17,  // 108: testdata.SampleConfiguration.revision:type_name -> testdata.Revision
-	70,  // 109: testdata.SampleConfiguration.mapField:type_name -> testdata.SampleConfiguration.MapFieldEntry
+	74,  // 109: testdata.SampleConfiguration.mapField:type_name -> testdata.SampleConfiguration.MapFieldEntry
 	0,   // 110: testdata.SampleConfiguration.enumField:type_name -> testdata.SampleEnum
 	9,   // 111: testdata.SampleConfiguration.messageField:type_name -> testdata.SampleMessage
-	71,  // 112: testdata.Message.Uint64ToAnyEntry.value:type_name -> google.protobuf.Any
-	8,   // 113: testdata.Message.BoolToMessageEntry.value:type_name -> testdata.Message2
-	71,  // 114: testdata.Message.StringToAnyEntry.value:type_name -> google.protobuf.Any
-	72,  // 115: testdata.Message.StringToDurationEntry.value:type_name -> google.protobuf.Duration
-	73,  // 116: testdata.Message.StringToTimestampEntry.value:type_name -> google.protobuf.Timestamp
-	74,  // 117: testdata.Message.StringToStructEntry.value:type_name -> google.protobuf.Struct
-	75,  // 118: testdata.Message.StringToUint32ValueEntry.value:type_name -> google.protobuf.UInt32Value
-	76,  // 119: testdata.Message.StringToUint64ValueEntry.value:type_name -> google.protobuf.UInt64Value
-	77,  // 120: testdata.Message.StringToInt32ValueEntry.value:type_name -> google.protobuf.Int32Value
-	78,  // 121: testdata.Message.StringToInt64ValueEntry.value:type_name -> google.protobuf.Int64Value
-	79,  // 122: testdata.Message.StringToBoolValueEntry.value:type_name -> google.protobuf.BoolValue
-	80,  // 123: testdata.Message.StringToStringValueEntry.value:type_name -> google.protobuf.StringValue
-	81,  // 124: testdata.Message.StringToBytesValueEntry.value:type_name -> google.protobuf.BytesValue
-	8,   // 125: testdata.Message.StringToMessageEntry.value:type_name -> testdata.Message2
-	43,  // 126: testdata.Message.NestedMessage.nested_string_to_int32:type_name -> testdata.Message.NestedMessage.NestedStringToInt32Entry
-	2,   // 127: testdata.Message.NestedMessage.nested_enum_field:type_name -> testdata.Message.NestedMessage.NestedEnum
-	71,  // 128: testdata.Message2.Uint64ToAnyEntry.value:type_name -> google.protobuf.Any
-	71,  // 129: testdata.Message2.BoolToAnyEntry.value:type_name -> google.protobuf.Any
-	71,  // 130: testdata.Message2.StringToAnyEntry.value:type_name -> google.protobuf.Any
-	72,  // 131: testdata.Message2.StringToDurationEntry.value:type_name -> google.protobuf.Duration
-	73,  // 132: testdata.Message2.StringToTimestampEntry.value:type_name -> google.protobuf.Timestamp
-	74,  // 133: testdata.Message2.StringToStructEntry.value:type_name -> google.protobuf.Struct
-	75,  // 134: testdata.Message2.StringToUint32ValueEntry.value:type_name -> google.protobuf.UInt32Value
-	76,  // 135: testdata.Message2.StringToUint64ValueEntry.value:type_name -> google.protobuf.UInt64Value
-	77,  // 136: testdata.Message2.StringToInt32ValueEntry.value:type_name -> google.protobuf.Int32Value
-	78,  // 137: testdata.Message2.StringToInt64ValueEntry.value:type_name -> google.protobuf.Int64Value
-	79,  // 138: testdata.Message2.StringToBoolValueEntry.value:type_name -> google.protobuf.BoolValue
-	80,  // 139: testdata.Message2.StringToStringValueEntry.value:type_name -> google.protobuf.StringValue
-	81,  // 140: testdata.Message2.StringToBytesValueEntry.value:type_name -> google.protobuf.BytesValue
-	68,  // 141: testdata.Message2.NestedMessage.nested_string_to_int32:type_name -> testdata.Message2.NestedMessage.NestedStringToInt32Entry
-	5,   // 142: testdata.Message2.NestedMessage.nested_enum_field:type_name -> testdata.Message2.NestedMessage.NestedEnum
-	143, // [143:143] is the sub-list for method output_type
-	143, // [143:143] is the sub-list for method input_type
-	143, // [143:143] is the sub-list for extension type_name
-	143, // [143:143] is the sub-list for extension extendee
-	0,   // [0:143] is the sub-list for field type_name
+	75,  // 112: testdata.Int64Map.value:type_name -> testdata.Int64Map.ValueEntry
+	76,  // 113: testdata.Uint64Map.value:type_name -> testdata.Uint64Map.ValueEntry
+	77,  // 114: testdata.Message.Uint64ToAnyEntry.value:type_name -> google.protobuf.Any
+	8,   // 115: testdata.Message.BoolToMessageEntry.value:type_name -> testdata.Message2
+	77,  // 116: testdata.Message.StringToAnyEntry.value:type_name -> google.protobuf.Any
+	78,  // 117: testdata.Message.StringToDurationEntry.value:type_name -> google.protobuf.Duration
+	79,  // 118: testdata.Message.StringToTimestampEntry.value:type_name -> google.protobuf.Timestamp
+	80,  // 119: testdata.Message.StringToStructEntry.value:type_name -> google.protobuf.Struct
+	81,  // 120: testdata.Message.StringToUint32ValueEntry.value:type_name -> google.protobuf.UInt32Value
+	82,  // 121: testdata.Message.StringToUint64ValueEntry.value:type_name -> google.protobuf.UInt64Value
+	83,  // 122: testdata.Message.StringToInt32ValueEntry.value:type_name -> google.protobuf.Int32Value
+	84,  // 123: testdata.Message.StringToInt64ValueEntry.value:type_name -> google.protobuf.Int64Value
+	85,  // 124: testdata.Message.StringToBoolValueEntry.value:type_name -> google.protobuf.BoolValue
+	86,  // 125: testdata.Message.StringToStringValueEntry.value:type_name -> google.protobuf.StringValue
+	87,  // 126: testdata.Message.StringToBytesValueEntry.value:type_name -> google.protobuf.BytesValue
+	8,   // 127: testdata.Message.StringToMessageEntry.value:type_name -> testdata.Message2
+	47,  // 128: testdata.Message.NestedMessage.nested_string_to_int32:type_name -> testdata.Message.NestedMessage.NestedStringToInt32Entry
+	2,   // 129: testdata.Message.NestedMessage.nested_enum_field:type_name -> testdata.Message.NestedMessage.NestedEnum
+	77,  // 130: testdata.Message2.Uint64ToAnyEntry.value:type_name -> google.protobuf.Any
+	77,  // 131: testdata.Message2.BoolToAnyEntry.value:type_name -> google.protobuf.Any
+	77,  // 132: testdata.Message2.StringToAnyEntry.value:type_name -> google.protobuf.Any
+	78,  // 133: testdata.Message2.StringToDurationEntry.value:type_name -> google.protobuf.Duration
+	79,  // 134: testdata.Message2.StringToTimestampEntry.value:type_name -> google.protobuf.Timestamp
+	80,  // 135: testdata.Message2.StringToStructEntry.value:type_name -> google.protobuf.Struct
+	81,  // 136: testdata.Message2.StringToUint32ValueEntry.value:type_name -> google.protobuf.UInt32Value
+	82,  // 137: testdata.Message2.StringToUint64ValueEntry.value:type_name -> google.protobuf.UInt64Value
+	83,  // 138: testdata.Message2.StringToInt32ValueEntry.value:type_name -> google.protobuf.Int32Value
+	84,  // 139: testdata.Message2.StringToInt64ValueEntry.value:type_name -> google.protobuf.Int64Value
+	85,  // 140: testdata.Message2.StringToBoolValueEntry.value:type_name -> google.protobuf.BoolValue
+	86,  // 141: testdata.Message2.StringToStringValueEntry.value:type_name -> google.protobuf.StringValue
+	87,  // 142: testdata.Message2.StringToBytesValueEntry.value:type_name -> google.protobuf.BytesValue
+	72,  // 143: testdata.Message2.NestedMessage.nested_string_to_int32:type_name -> testdata.Message2.NestedMessage.NestedStringToInt32Entry
+	5,   // 144: testdata.Message2.NestedMessage.nested_enum_field:type_name -> testdata.Message2.NestedMessage.NestedEnum
+	145, // [145:145] is the sub-list for method output_type
+	145, // [145:145] is the sub-list for method input_type
+	145, // [145:145] is the sub-list for extension type_name
+	145, // [145:145] is the sub-list for extension extendee
+	0,   // [0:145] is the sub-list for field type_name
 }
 
 func init() { file_github_com_kralicky_protoutil_test_testdata_testdata_proto_init() }
@@ -4009,7 +4225,55 @@ func file_github_com_kralicky_protoutil_test_testdata_testdata_proto_init() {
 				return nil
 			}
 		}
-		file_github_com_kralicky_protoutil_test_testdata_testdata_proto_msgTypes[34].Exporter = func(v any, i int) any {
+		file_github_com_kralicky_protoutil_test_testdata_testdata_proto_msgTypes[12].Exporter = func(v any, i int) any {
+			switch v := v.(*Int64Map); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_github_com_kralicky_protoutil_test_testdata_testdata_proto_msgTypes[13].Exporter = func(v any, i int) any {
+			switch v := v.(*Uint64Map); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_github_com_kralicky_protoutil_test_testdata_testdata_proto_msgTypes[14].Exporter = func(v any, i int) any {
+			switch v := v.(*Int64List); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_github_com_kralicky_protoutil_test_testdata_testdata_proto_msgTypes[15].Exporter = func(v any, i int) any {
+			switch v := v.(*Uint64List); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_github_com_kralicky_protoutil_test_testdata_testdata_proto_msgTypes[38].Exporter = func(v any, i int) any {
 			switch v := v.(*Message_NestedMessage); i {
 			case 0:
 				return &v.state
@@ -4021,7 +4285,7 @@ func file_github_com_kralicky_protoutil_test_testdata_testdata_proto_init() {
 				return nil
 			}
 		}
-		file_github_com_kralicky_protoutil_test_testdata_testdata_proto_msgTypes[35].Exporter = func(v any, i int) any {
+		file_github_com_kralicky_protoutil_test_testdata_testdata_proto_msgTypes[39].Exporter = func(v any, i int) any {
 			switch v := v.(*Message_NestedMessage_NestedMessage2); i {
 			case 0:
 				return &v.state
@@ -4033,7 +4297,7 @@ func file_github_com_kralicky_protoutil_test_testdata_testdata_proto_init() {
 				return nil
 			}
 		}
-		file_github_com_kralicky_protoutil_test_testdata_testdata_proto_msgTypes[37].Exporter = func(v any, i int) any {
+		file_github_com_kralicky_protoutil_test_testdata_testdata_proto_msgTypes[41].Exporter = func(v any, i int) any {
 			switch v := v.(*Message_NestedMessage_NestedMessage2_NestedMessage3); i {
 			case 0:
 				return &v.state
@@ -4045,7 +4309,7 @@ func file_github_com_kralicky_protoutil_test_testdata_testdata_proto_init() {
 				return nil
 			}
 		}
-		file_github_com_kralicky_protoutil_test_testdata_testdata_proto_msgTypes[59].Exporter = func(v any, i int) any {
+		file_github_com_kralicky_protoutil_test_testdata_testdata_proto_msgTypes[63].Exporter = func(v any, i int) any {
 			switch v := v.(*Message2_NestedMessage); i {
 			case 0:
 				return &v.state
@@ -4057,7 +4321,7 @@ func file_github_com_kralicky_protoutil_test_testdata_testdata_proto_init() {
 				return nil
 			}
 		}
-		file_github_com_kralicky_protoutil_test_testdata_testdata_proto_msgTypes[60].Exporter = func(v any, i int) any {
+		file_github_com_kralicky_protoutil_test_testdata_testdata_proto_msgTypes[64].Exporter = func(v any, i int) any {
 			switch v := v.(*Message2_NestedMessage_NestedMessage2); i {
 			case 0:
 				return &v.state
@@ -4069,7 +4333,7 @@ func file_github_com_kralicky_protoutil_test_testdata_testdata_proto_init() {
 				return nil
 			}
 		}
-		file_github_com_kralicky_protoutil_test_testdata_testdata_proto_msgTypes[62].Exporter = func(v any, i int) any {
+		file_github_com_kralicky_protoutil_test_testdata_testdata_proto_msgTypes[66].Exporter = func(v any, i int) any {
 			switch v := v.(*Message2_NestedMessage_NestedMessage2_NestedMessage3); i {
 			case 0:
 				return &v.state
@@ -4103,7 +4367,7 @@ func file_github_com_kralicky_protoutil_test_testdata_testdata_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_github_com_kralicky_protoutil_test_testdata_testdata_proto_rawDesc,
 			NumEnums:      7,
-			NumMessages:   64,
+			NumMessages:   70,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

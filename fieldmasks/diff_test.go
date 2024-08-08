@@ -1,7 +1,7 @@
-package fieldmask_test
+package fieldmasks_test
 
 import (
-	"github.com/kralicky/protoutil/fieldmask"
+	"github.com/kralicky/protoutil/fieldmasks"
 	"github.com/kralicky/protoutil/test/testdata"
 	"github.com/kralicky/protoutil/testutil"
 	. "github.com/onsi/ginkgo/v2"
@@ -14,7 +14,7 @@ import (
 var _ = Describe("Diff", Label("unit"), func() {
 	DescribeTable("identifying changes between protobuf messages",
 		func(oldMsg, newMsg proto.Message, expectedPaths []string) {
-			mask := fieldmask.Diff(oldMsg.ProtoReflect(), newMsg.ProtoReflect())
+			mask := fieldmasks.Diff(oldMsg.ProtoReflect(), newMsg.ProtoReflect())
 			Expect(mask.Paths).To(ConsistOf(expectedPaths))
 		},
 		Entry("no changes",
@@ -168,12 +168,12 @@ var _ = Describe("Diff", Label("unit"), func() {
 	)
 
 	It("should handle nil messages", func() {
-		Expect(fieldmask.Diff((*testdata.SampleMessage)(nil).ProtoReflect(), (*testdata.SampleMessage)(nil).ProtoReflect())).To(testutil.ProtoEqual(&fieldmaskpb.FieldMask{}))
+		Expect(fieldmasks.Diff((*testdata.SampleMessage)(nil).ProtoReflect(), (*testdata.SampleMessage)(nil).ProtoReflect())).To(testutil.ProtoEqual(&fieldmaskpb.FieldMask{}))
 	})
 
 	It("should panic on different message types", func() {
 		Expect(func() {
-			fieldmask.Diff((&testdata.SampleMessage{}).ProtoReflect(), (&testdata.SampleMessage2{}).ProtoReflect())
+			fieldmasks.Diff((&testdata.SampleMessage{}).ProtoReflect(), (&testdata.SampleMessage2{}).ProtoReflect())
 		}).To(Panic())
 	})
 })

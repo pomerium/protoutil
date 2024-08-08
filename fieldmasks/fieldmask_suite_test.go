@@ -1,4 +1,4 @@
-package fieldmask_test
+package fieldmasks_test
 
 import (
 	"testing"

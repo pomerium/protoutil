@@ -62,17 +62,33 @@ func TestParsePath(t *testing.T) {
 			if len(v.Path) == 1 {
 				return nil
 			}
-			pathStr := v.Path[1:].String()
 			expectedValue := v.Index(-1).Value
 
-			parsedPath, err := paths.Parse(entry.ProtoReflect().Descriptor(), pathStr)
-			require.NoError(t, err, "path: %s", pathStr)
-			assert.Equal(t, v.Path.String(), parsedPath.String())
+			{
+				pathStr := v.Path.String()
+				parsedPath, err := paths.Parse(pathStr)
+				// parsedPath, err := paths.ParseFrom(entry.ProtoReflect().Descriptor(), pathStr)
+				require.NoError(t, err, "path: %s", pathStr)
+				assert.Equal(t, v.Path.String(), parsedPath.String())
 
-			actualValue, err := paths.Dereference(entry, parsedPath)
-			require.NoError(t, err)
-			assert.True(t, actualValue.Equal(expectedValue),
-				"expected %s to equal %s", actualValue, expectedValue)
+				actualValue, err := paths.Evaluate(entry, parsedPath)
+				require.NoError(t, err)
+				assert.True(t, actualValue.Equal(expectedValue),
+					"expected %s to equal %s", actualValue, expectedValue)
+			}
+
+			{
+				pathStr := v.Path[1:].String()
+
+				parsedPath, err := paths.ParseFrom(entry.ProtoReflect().Descriptor(), pathStr)
+				require.NoError(t, err, "path: %s", pathStr)
+				assert.Equal(t, v.Path.String(), parsedPath.String())
+
+				actualValue, err := paths.Evaluate(entry, parsedPath)
+				require.NoError(t, err)
+				assert.True(t, actualValue.Equal(expectedValue),
+					"expected %s to equal %s", actualValue, expectedValue)
+			}
 			return nil
 		})
 	})
@@ -198,7 +214,7 @@ func TestParsePath(t *testing.T) {
 
 		for _, c := range cases {
 			t.Run(c.path, func(t *testing.T) {
-				_, err := paths.Parse((*testdata.Message)(nil).ProtoReflect().Descriptor(), c.path)
+				_, err := paths.ParseFrom((*testdata.Message)(nil).ProtoReflect().Descriptor(), c.path)
 				// note: protobuf randomly swaps out spaces in error messages with
 				// non-breaking spaces (U+00A0)
 				assert.Contains(t, strings.ReplaceAll(err.Error(), "\u00a0", " "), c.err)
@@ -206,7 +222,7 @@ func TestParsePath(t *testing.T) {
 		}
 	})
 
-	t.Run("Dereference Errors", func(t *testing.T) {
+	t.Run("Evaluate Errors", func(t *testing.T) {
 		cases := []struct {
 			path string
 			err  string
@@ -233,9 +249,9 @@ func TestParsePath(t *testing.T) {
 		}
 		for _, c := range cases {
 			t.Run(c.path, func(t *testing.T) {
-				path, err := paths.Parse(msg.ProtoReflect().Descriptor(), c.path)
+				path, err := paths.ParseFrom(msg.ProtoReflect().Descriptor(), c.path)
 				require.NoError(t, err)
-				_, err = paths.Dereference(msg, path)
+				_, err = paths.Evaluate(msg, path)
 				if c.err == "" {
 					assert.NoError(t, err)
 				} else {
@@ -352,10 +368,10 @@ func TestParsePath(t *testing.T) {
 
 		for i, c := range steps {
 			t.Run(fmt.Sprint(i), func(t *testing.T) {
-				path, err := paths.Parse(c.ProtoReflect().Descriptor(), longPath)
+				path, err := paths.ParseFrom(c.ProtoReflect().Descriptor(), longPath)
 				require.NoError(t, err)
 
-				v, err := paths.Dereference(c, path)
+				v, err := paths.Evaluate(c, path)
 				require.NoError(t, err)
 				if i == len(steps)-1 {
 					require.True(t, v.IsValid(), "expected valid value")
@@ -373,10 +389,10 @@ func TestParser(t *testing.T) {
 	tcpAccessLogEntryDesc := (*testdata.Message)(nil).ProtoReflect().Descriptor()
 
 	parser := paths.Parser{}
-	path1, err := parser.Parse(httpAccessLogEntryDesc, ".message_field.string_field")
+	path1, err := parser.ParseFrom(httpAccessLogEntryDesc, ".message_field.string_field")
 	require.NoError(t, err)
 
-	path2, err := parser.Parse(tcpAccessLogEntryDesc, ".message_field.string_field")
+	path2, err := parser.ParseFrom(tcpAccessLogEntryDesc, ".message_field.string_field")
 	require.NoError(t, err)
 
 	require.Equal(t, "(testdata.Message).message_field.string_field", path1.String())
@@ -389,13 +405,13 @@ func BenchmarkParser(b *testing.B) {
 	b.Run("Without cache", func(b *testing.B) {
 		for i := 0; i < b.N; i++ {
 			var parser paths.Parser
-			_, _ = parser.Parse(desc, path)
+			_, _ = parser.ParseFrom(desc, path)
 		}
 	})
 	b.Run("With cache", func(b *testing.B) {
 		var parser paths.Parser
 		for i := 0; i < b.N; i++ {
-			_, _ = parser.Parse(desc, path)
+			_, _ = parser.ParseFrom(desc, path)
 		}
 	})
 }

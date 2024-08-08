@@ -1,9 +1,9 @@
-package fieldmask_test
+package fieldmasks_test
 
 import (
 	"fmt"
 
-	"github.com/kralicky/protoutil/fieldmask"
+	"github.com/kralicky/protoutil/fieldmasks"
 	"github.com/kralicky/protoutil/protorand"
 	"github.com/kralicky/protoutil/test/testdata"
 	"github.com/kralicky/protoutil/testutil"
@@ -17,7 +17,7 @@ import (
 var _ = Describe("Masks", Label("unit"), func() {
 	DescribeTable("using a field mask to keep only the specified fields",
 		func(msg *testdata.SampleMessage, mask *fieldmaskpb.FieldMask, expected *testdata.SampleMessage) {
-			fieldmask.ExclusiveKeep(msg, mask)
+			fieldmasks.ExclusiveKeep(msg, mask)
 			Expect(msg).To(testutil.ProtoEqual(expected))
 		},
 		Entry("empty mask",
@@ -111,7 +111,7 @@ var _ = Describe("Masks", Label("unit"), func() {
 	)
 	DescribeTable("using a field mask to discard the specified fields",
 		func(msg *testdata.SampleMessage, mask *fieldmaskpb.FieldMask, expected *testdata.SampleMessage) {
-			fieldmask.ExclusiveDiscard(msg, mask)
+			fieldmasks.ExclusiveDiscard(msg, mask)
 			Expect(msg).To(testutil.ProtoEqual(expected))
 		},
 		Entry("empty mask",
@@ -209,9 +209,9 @@ var _ = Describe("Masks", Label("unit"), func() {
 	)
 	It("should treat a nil mask as a no-op", func() {
 		msg := &testdata.SampleMessage{Field1: &testdata.Sample1FieldMsg{Field1: 1}}
-		fieldmask.ExclusiveKeep(msg, nil)
+		fieldmasks.ExclusiveKeep(msg, nil)
 		Expect(msg).To(testutil.ProtoEqual(&testdata.SampleMessage{Field1: &testdata.Sample1FieldMsg{Field1: 1}}))
-		fieldmask.ExclusiveDiscard(msg, nil)
+		fieldmasks.ExclusiveDiscard(msg, nil)
 		Expect(msg).To(testutil.ProtoEqual(&testdata.SampleMessage{Field1: &testdata.Sample1FieldMsg{Field1: 1}}))
 	})
 	It("should create field masks by presence", func() {
@@ -219,8 +219,8 @@ var _ = Describe("Masks", Label("unit"), func() {
 		rand.Seed(0)
 		obj, err := rand.GenPartial(0.5)
 		Expect(err).NotTo(HaveOccurred())
-		presence := fieldmask.ByPresence(obj.ProtoReflect())
-		absence := fieldmask.ByAbsence(obj.ProtoReflect())
+		presence := fieldmasks.ByPresence(obj.ProtoReflect())
+		absence := fieldmasks.ByAbsence(obj.ProtoReflect())
 		expectedPresence := &fieldmaskpb.FieldMask{
 			Paths: []string{
 				"field3.field1",
@@ -267,12 +267,12 @@ var _ = Describe("Masks", Label("unit"), func() {
 		Expect(absence).To(testutil.ProtoEqual(expectedAbsence))
 		By("checking that ExclusiveKeep(obj, absence) results in an empty object", func() {
 			obj := proto.Clone(obj)
-			fieldmask.ExclusiveKeep(obj, absence)
+			fieldmasks.ExclusiveKeep(obj, absence)
 			Expect(obj).To(testutil.ProtoEqual(&testdata.SampleMessage{}))
 		})
 		By("checking that ExclusiveDiscard(obj, presence) results in an empty object", func() {
 			obj := proto.Clone(obj)
-			fieldmask.ExclusiveDiscard(obj, presence)
+			fieldmasks.ExclusiveDiscard(obj, presence)
 			Expect(obj).To(testutil.ProtoEqual(&testdata.SampleMessage{}))
 		})
 
@@ -280,8 +280,8 @@ var _ = Describe("Masks", Label("unit"), func() {
 		rand2.Seed(0)
 		obj2, err := rand2.GenPartial(0.5)
 		Expect(err).NotTo(HaveOccurred())
-		presence2 := fieldmask.ByPresence(obj2.ProtoReflect())
-		absence2 := fieldmask.ByAbsence(obj2.ProtoReflect())
+		presence2 := fieldmasks.ByPresence(obj2.ProtoReflect())
+		absence2 := fieldmasks.ByAbsence(obj2.ProtoReflect())
 		expectedPresence2 := &fieldmaskpb.FieldMask{
 			Paths: []string{
 				"enabled",
@@ -321,17 +321,17 @@ var _ = Describe("Masks", Label("unit"), func() {
 
 		By("checking that ExclusiveKeep(obj2, absence2) results in an empty object", func() {
 			obj2 := proto.Clone(obj2)
-			fieldmask.ExclusiveKeep(obj2, absence2)
+			fieldmasks.ExclusiveKeep(obj2, absence2)
 			Expect(obj2).To(testutil.ProtoEqual(&testdata.SampleConfiguration{}))
 		})
 		By("checking that ExclusiveDiscard(obj2, presence2) results in an empty object", func() {
 			obj2 := proto.Clone(obj2)
-			fieldmask.ExclusiveDiscard(obj2, presence2)
+			fieldmasks.ExclusiveDiscard(obj2, presence2)
 			Expect(obj2).To(testutil.ProtoEqual(&testdata.SampleConfiguration{}))
 		})
 	})
 	It("should create complete field masks for a type", func() {
-		mask := fieldmask.AllFields[*testdata.SampleMessage]()
+		mask := fieldmasks.AllFields[*testdata.SampleMessage]()
 		expected := &fieldmaskpb.FieldMask{
 			Paths: []string{},
 		}
@@ -346,7 +346,7 @@ var _ = Describe("Masks", Label("unit"), func() {
 		expected.Normalize()
 		Expect(mask).To(testutil.ProtoEqual(expected))
 
-		mask2 := fieldmask.AllFields[*testdata.SampleConfiguration]()
+		mask2 := fieldmasks.AllFields[*testdata.SampleConfiguration]()
 		expected2 := &fieldmaskpb.FieldMask{
 			Paths: []string{
 				"enabled",
@@ -367,7 +367,7 @@ var _ = Describe("Masks", Label("unit"), func() {
 		Expect(mask2).To(testutil.ProtoEqual(expected2))
 	})
 	It("should create masks containing only leaf fields from an existing mask", func() {
-		leaves := fieldmask.Leaves(&fieldmaskpb.FieldMask{
+		leaves := fieldmasks.Leaves(&fieldmaskpb.FieldMask{
 			Paths: []string{
 				"field1.field1",
 				"field2.field1",

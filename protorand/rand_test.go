@@ -232,9 +232,60 @@ var _ = Describe("Protorand", Label("unit"), func() {
 	})
 
 	It("should not generate numbers larger than 2^53", func() {
-		rand := protorand.New[*wrapperspb.UInt64Value]()
-		rand.Seed(0) // seed 0 happens to work
-		out := rand.MustGen()
-		Expect(out.Value).To(BeEquivalentTo(0x78FC2FFAC2FD9401 & ((1 << 53) - 1)))
+		By("checking uint64", func() {
+			rand := protorand.New[*wrapperspb.UInt64Value]()
+			rand.UseJsonCompatibleIntegers = true
+			rand.Seed(0) // seed 0 happens to generate the first few numbers > 2^53
+			out := rand.MustGen()
+			Expect(out.Value).To(Equal(uint64(0x78FC2FFAC2FD9401 & ((1 << 53) - 1))))
+		})
+
+		By("checking int64", func() {
+			rand := protorand.New[*wrapperspb.Int64Value]()
+			rand.UseJsonCompatibleIntegers = true
+			rand.Seed(0)
+			out := rand.MustGen()
+			Expect(out.Value).To(Equal(int64(0x78FC2FFAC2FD9401 & ((1 << 53) - 1))))
+		})
+
+		By("checking maps with uint64 keys", func() {
+			rand := protorand.New[*testdata.Uint64Map]()
+			rand.UseJsonCompatibleIntegers = true
+			rand.MaxCollectionElements = 1
+			rand.Seed(0)
+			out := rand.MustGen()
+			Expect(out.Value).To(HaveKey(uint64(0x1F5B0412FFD341C0 & ((1 << 53) - 1))))
+			Expect(out.Value[0x1F5B0412FFD341C0&((1<<53)-1)]).To(BeNumerically("<=", uint64(1<<53-1)))
+			Expect(out.Value).To(HaveLen(1))
+		})
+
+		By("checking maps with int64 keys", func() {
+			rand := protorand.New[*testdata.Int64Map]()
+			rand.UseJsonCompatibleIntegers = true
+			rand.MaxCollectionElements = 1
+			rand.Seed(0)
+			out := rand.MustGen()
+			Expect(out.Value).To(HaveKey(int64(0x1F5B0412FFD341C0 & ((1 << 53) - 1))))
+			Expect(out.Value[0x1F5B0412FFD341C0&((1<<53)-1)]).To(BeNumerically("<=", int64(1<<53-1)))
+			Expect(out.Value).To(HaveLen(1))
+		})
+
+		By("checking lists with uint64 keys", func() {
+			rand := protorand.New[*testdata.Uint64List]()
+			rand.UseJsonCompatibleIntegers = true
+			rand.MaxCollectionElements = 1
+			rand.Seed(0)
+			out := rand.MustGen()
+			Expect(out.Value).To(ConsistOf(uint64(0x1F5B0412FFD341C0 & ((1 << 53) - 1))))
+		})
+
+		By("checking lists with int64 keys", func() {
+			rand := protorand.New[*testdata.Int64List]()
+			rand.UseJsonCompatibleIntegers = true
+			rand.MaxCollectionElements = 1
+			rand.Seed(0)
+			out := rand.MustGen()
+			Expect(out.Value).To(ConsistOf(int64(0x1F5B0412FFD341C0 & ((1 << 53) - 1))))
+		})
 	})
 })
