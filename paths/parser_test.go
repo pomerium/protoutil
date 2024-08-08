@@ -156,11 +156,11 @@ func TestParsePath(t *testing.T) {
 			},
 			{
 				path: `.message_field.string_to_any["key"].bool_to_any[notABool]`,
-				err:  "no such field 'bool_to_any' in message google.protobuf.Any (missing type expansion?)",
+				err:  "field not found: 'bool_to_any' in message google.protobuf.Any (missing type expansion?)",
 			},
 			{
 				path: `.message_field.string_to_any["[key]"].(testdata.Message2).nonexistent`,
-				err:  "no such field 'nonexistent' in message testdata.Message2",
+				err:  "field not found: 'nonexistent' in message testdata.Message2",
 			},
 			{
 				path: `.message_field.string_to_any["]key["].(testdata.Message2).bool_to_any[notABool]`,

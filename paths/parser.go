@@ -12,6 +12,8 @@ import (
 	"google.golang.org/protobuf/reflect/protoregistry"
 )
 
+var ErrFieldNotFound = errors.New("field not found")
+
 var globalParser Parser
 
 // A Parser contains a cache and an optional custom resolver. The methods
@@ -241,9 +243,9 @@ func (p *Parser) parsePart(part string, result *protopath.Path) error {
 			field := msg.Fields().ByName(protoreflect.Name(part))
 			if field == nil {
 				if msg.FullName() == "google.protobuf.Any" {
-					return fmt.Errorf("no such field '%s' in message %s (missing type expansion?)", part, msg.FullName())
+					return fmt.Errorf("%w: '%s' in message %s (missing type expansion?)", ErrFieldNotFound, part, msg.FullName())
 				}
-				return fmt.Errorf("no such field '%s' in message %s", part, msg.FullName())
+				return fmt.Errorf("%w: '%s' in message %s", ErrFieldNotFound, part, msg.FullName())
 			}
 			*result = append(*result, protopath.FieldAccess(field))
 		} else {
@@ -278,9 +280,13 @@ func Split(pathStr string) func(yield func(string) bool) {
 		for i, rn := range pathStr {
 			switch rn {
 			case '(':
-				withinParens = true
+				if withinString == 0 {
+					withinParens = true
+				}
 			case ')':
-				withinParens = false
+				if withinString == 0 {
+					withinParens = false
+				}
 			case '"', '\'':
 				switch withinString {
 				case rn:
