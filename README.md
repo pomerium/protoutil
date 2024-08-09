@@ -4,7 +4,7 @@ A set of supplementary utility packages for working with protocol buffers in Go.
 
 - `fieldmasks` contains utilities for building and comparing field masks (`fieldmaskpb.FieldMask`).
 
-- `merge` contains a replacement for the upstream merge function containing extra options.
+- `merge` contains a replacement for the upstream merge function with extra options.
 
 - `messages` contains a few helpful generic functions for working with message types.
 
