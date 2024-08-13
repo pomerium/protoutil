@@ -17,6 +17,7 @@ package paths
 import (
 	"errors"
 	"fmt"
+	"iter"
 	"strconv"
 	"strings"
 	"sync"
@@ -97,15 +98,10 @@ func (p *Parser) ParseFrom(root protoreflect.MessageDescriptor, pathStr string) 
 
 func (p *Parser) parse(root protoreflect.MessageDescriptor, pathStr string) (protopath.Path, error) {
 	result := protopath.Path{protopath.Root(root)}
-
-	// TODO(go1.23): replace with `for _, part := range Split(pathStr) { ... }`
-	var err error
-	Split(pathStr)(func(part string) bool {
-		err = p.parsePart(part, &result)
-		return err == nil
-	})
-	if err != nil {
-		return nil, err
+	for part := range Split(pathStr) {
+		if err := p.parsePart(part, &result); err != nil {
+			return nil, err
+		}
 	}
 	return result, nil
 }
@@ -285,7 +281,7 @@ func kindStr(fd protoreflect.FieldDescriptor) string {
 
 // Split returns an iterator that yields each segment of a protopath string in
 // order. It splits the path by '.' or '[' except within parentheses or quotes.
-func Split(pathStr string) func(yield func(string) bool) {
+func Split(pathStr string) iter.Seq[string] {
 	pathStr = strings.TrimSpace(pathStr)
 	return func(yield func(string) bool) {
 		start := 0
