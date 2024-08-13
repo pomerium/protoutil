@@ -414,7 +414,7 @@ func TestParser(t *testing.T) {
 }
 
 func BenchmarkParser(b *testing.B) {
-	const path = `.message_field.string_to_any["key"].(testdata.Message2).oneof_nested_message_field.nested_bool_list[0].(testdata.Message2)`
+	const path = `.message_field.string_to_any["key"].(testdata.Message2).oneof_nested_message_field.nested_bool_list[0]`
 	desc := (*testdata.Message)(nil).ProtoReflect().Descriptor()
 	b.Run("Without cache", func(b *testing.B) {
 		for i := 0; i < b.N; i++ {
