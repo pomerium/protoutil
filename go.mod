@@ -10,7 +10,7 @@ require (
 	github.com/sryoya/protorand v0.0.0-20240429201223-e7440656b2a4
 	github.com/stretchr/testify v1.11.1
 	github.com/zeebo/xxh3 v1.1.0
-	google.golang.org/grpc v1.79.1
+	google.golang.org/grpc v1.79.3
 	google.golang.org/protobuf v1.36.11
 )
 
