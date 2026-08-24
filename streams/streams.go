@@ -65,11 +65,11 @@ func (s *ClientStreamWithContext) Context() context.Context {
 	return s.Ctx
 }
 
-func (s *ClientStreamWithContext) SendMsg(m interface{}) error {
+func (s *ClientStreamWithContext) SendMsg(m any) error {
 	return s.Stream.SendMsg(m)
 }
 
-func (s *ClientStreamWithContext) RecvMsg(m interface{}) error {
+func (s *ClientStreamWithContext) RecvMsg(m any) error {
 	return s.Stream.RecvMsg(m)
 }
 
@@ -147,11 +147,11 @@ func (s *ServerStreamWithContext) Context() context.Context {
 	return s.Ctx
 }
 
-func (s *ServerStreamWithContext) SendMsg(m interface{}) error {
+func (s *ServerStreamWithContext) SendMsg(m any) error {
 	return s.Stream.SendMsg(m)
 }
 
-func (s *ServerStreamWithContext) RecvMsg(m interface{}) error {
+func (s *ServerStreamWithContext) RecvMsg(m any) error {
 	return s.Stream.RecvMsg(m)
 }
 

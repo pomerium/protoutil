@@ -171,7 +171,7 @@ func newPartition(size int, ratio float64) []int {
 	}
 	s := make([]int, size)
 	numOnes := max(1, int(math.Round(ratio*float64(size))))
-	for i := 0; i < numOnes; i++ {
+	for i := range numOnes {
 		s[i] = 1
 	}
 	return s

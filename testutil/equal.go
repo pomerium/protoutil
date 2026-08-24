@@ -76,7 +76,7 @@ func (matcher *ProtoMatcher) String() string {
 }
 
 // implements gomock.Matcher
-func (matcher *ProtoMatcher) Matches(x interface{}) bool {
+func (matcher *ProtoMatcher) Matches(x any) bool {
 	success, _ := matcher.Match(x)
 	return success
 }
@@ -245,7 +245,7 @@ func (m *StatusCodeMatcher) String() string {
 }
 
 // implements gomock.Matcher
-func (m *StatusCodeMatcher) Matches(x interface{}) bool {
+func (m *StatusCodeMatcher) Matches(x any) bool {
 	success, _ := m.Match(x)
 	return success
 }
